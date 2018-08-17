@@ -1,14 +1,29 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const TimeLine = function (timeline) {
+const Timeline = function (timeline) {
   this.timeline = timeline;
 }
 
-TimeLine.prototype.bindingEvents = function () {
+Timeline.prototype.bindingEvents = function () {
   PubSub.subscribe('TimePeriod:all-periods-ready', (evt) => {
     const periods = evt.detail;
-    console.log(periods);
+
+    render(periods, this.timeline);
   });
 };
 
-module.exports = TimeLine;
+function render(periods, timeline) {
+  let periodsMapped = getPeriods(periods);
+  console.log('all periods names: ', periodsMapped);
+  renderTimeline(periodsMapped, timeline)
+}
+
+function getPeriods(periods) {
+  let periodNames = []
+  periods.map((period) => {
+    periodNames.push(period.nam);
+  })
+  return periodNames
+}
+
+module.exports = Timeline;

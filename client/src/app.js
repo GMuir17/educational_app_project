@@ -1,7 +1,7 @@
 const leaflet = require('leaflet');
 const tilesetKey = require('./helpers/tileset_key.js')
 const TimePeriod = require('./models/time_period.js')
-const TimeLineView = require('./views/timeline_view.js')
+const TimelineView = require('./views/timeline_view.js')
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     accessToken: tilesetKey
   }).addTo(map);
 
-  const timelineView = new TimeLineView();
+  const timelineNav = document.querySelector('nav#timeline');
+  const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
 
   const timePeriod = new TimePeriod();
