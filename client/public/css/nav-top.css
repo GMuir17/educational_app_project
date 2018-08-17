@@ -1,0 +1,27 @@
+#top-nav {
+  align-content: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #E25D1E;
+  color: #f4f4f4;
+}
+
+#top-nav ul li {
+  display: inline-block;
+  margin-left:30px;
+  margin-right:30px;
+}
+
+#top-nav ul li:first-child {
+  margin-left:0px;
+}
+#top-nav ul li:last-child {
+  margin-right: 0px;
+}
+
+#top-nav ul a {
+  color: #ffffff;
+  font-style: normal;
+  text-decoration: none;
+}
