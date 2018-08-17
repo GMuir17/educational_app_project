@@ -7,7 +7,6 @@ const Timeline = function (timeline) {
 Timeline.prototype.bindingEvents = function () {
   PubSub.subscribe('TimePeriod:all-periods-ready', (evt) => {
     const periods = evt.detail;
-
     this.renderTimeline(periods);
   });
 };
