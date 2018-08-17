@@ -13,17 +13,29 @@ Timeline.prototype.bindingEvents = function () {
 };
 
 function render(periods, timeline) {
-  let periodsMapped = getPeriods(periods);
-  console.log('all periods names: ', periodsMapped);
-  renderTimeline(periodsMapped, timeline)
+  // let periodsMapped = getPeriods(periods);
+
+  renderTimeline(periods, timeline)
 }
 
-function getPeriods(periods) {
-  let periodNames = []
-  periods.map((period) => {
-    periodNames.push(period.nam);
+// function getPeriods(periods) {
+//   let periodNames = []
+//   periods.map((period) => {
+//     periodNames.push(period.nam);
+//   })
+//   return periodNames
+// }
+
+function renderTimeline(periods, timeline) {
+  const listOfPeriods = document.createElement('ul');
+  periods.forEach(period => {
+    const item = document.createElement('li');
+    item.textContent = period.nam;
+    item.value = `$min_ma=${period.lag}&max_ma=${period.eag}`;
+    console.log('all periods in list: ', item.value);
+    listOfPeriods.appendChild(item);
   })
-  return periodNames
+  timeline.appendChild(listOfPeriods);
 }
 
 module.exports = Timeline;
