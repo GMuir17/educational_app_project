@@ -1,0 +1,54 @@
+#time-period-display{
+  position: absolute;
+  left: 300px;
+  top: 90px;
+  height: 85vh;
+  width: 80vw;
+  background-color: #AD6C4A;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 7.5% 10% 1fr 1fr;
+    color: #f4f4f4;
+}
+
+#families {
+  grid-area: 1 / 1 / span 1 / span 4;
+  align-content: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#families ul li {
+  display: inline-block;
+  margin-left:30px;
+  margin-right:30px;
+}
+
+#families ul li:first-child {
+  margin-left:0px;
+}
+
+#families ul li:last-child {
+  margin-right: 0px;
+}
+
+#families ul {
+  color: #ffffff;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.period-summary {
+  padding-left: 5vh;
+  grid-area: 2 / 1 / span 1 / span 4
+}
+
+.dinosaur-preview {
+  margin: 20px;
+  grid-area: auto/auto/span 1/span 1;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #25222B;
+
+}
