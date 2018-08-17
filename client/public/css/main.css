@@ -27,6 +27,7 @@ body {
   height: 75vh;
   width: 73vw;
   object-fit: cover;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #welcome{
@@ -37,10 +38,6 @@ body {
   color: #f4f4f4;
   bottom: 2.5vh;
   right: 2.5vw;
-
   padding: 15px;
-}
-
-#map{
-  height: 25vh;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

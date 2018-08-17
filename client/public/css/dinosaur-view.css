@@ -1,0 +1,44 @@
+#dinosaur-view{
+  position: absolute;
+  left: 9vw;
+  top: 12vh;
+  height: 60vh;
+  width: 60vw;
+  background-color: #96A5A1;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  color: #f4f4f4;
+
+}
+
+#info-para{
+  grid-area: 1 / 1 / span 1 / span 1;
+  margin: 20px;
+}
+
+#map{
+  grid-area: 1 / 2 / span 1 / span 1;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px;
+}
+
+#fact-file{
+  grid-area: 2 / 2 / span 1 / span 1;
+  background-color: #25222B;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px;
+}
+
+#dinosaur-image-container{
+  grid-area: 2 / 1 / span 1 / span 1;
+  margin: 20px;
+}
+
+#dinosaur-image{
+  height: 25vh;
+  width: 27.5vw;
+  object-fit: cover;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
