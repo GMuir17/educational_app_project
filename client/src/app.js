@@ -1,5 +1,6 @@
 const leaflet = require('leaflet');
 const tilesetKey = require('./helpers/tileset_key.js')
+const TimePeriod = require('./models/time_period.js')
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
@@ -9,5 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     maxZoom: 18,
     id: 'mapbox.streets',
     accessToken: tilesetKey
-}).addTo(map);
+  }).addTo(map);
+
+  const timePeriod = new TimePeriod();
+  timePeriod.get();
+
+
+
 })
