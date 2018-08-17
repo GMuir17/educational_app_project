@@ -1,4 +1,4 @@
 node_modules
 npm-debug.log
 bundle.js
-client/src/helpers/tileset_key.js
+tileset_key.js

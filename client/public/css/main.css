@@ -1,0 +1,46 @@
+body {
+  background-color: #96A5A1;
+  margin: 0px
+}
+
+#main-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 1fr;
+  height: 95vh;
+}
+
+#timeline{
+  grid-area: 1 / 1 / auto / auto;
+  background-color: #25222B;
+  color: #f4f4f4;
+}
+
+#hero-container{
+  grid-area: 1 / 2 / auto / auto;
+  justify-self: center;
+  align-self: center;
+
+}
+
+.hero-image{
+  height: 75vh;
+  width: 73vw;
+  object-fit: cover;
+}
+
+#welcome{
+  position: absolute;
+  height: 20vh;
+  width: 25vw;
+  background-color: #25222B;
+  color: #f4f4f4;
+  bottom: 2.5vh;
+  right: 2.5vw;
+
+  padding: 15px;
+}
+
+#map{
+  height: 25vh;
+}
