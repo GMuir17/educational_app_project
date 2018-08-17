@@ -28,12 +28,16 @@ function render(periods, timeline) {
 
 function renderTimeline(periods, timeline) {
   const listOfPeriods = document.createElement('ul');
-  periods.forEach(period => {
+  periods.forEach((period, index) => {
     const item = document.createElement('li');
     item.textContent = period.nam;
-    item.value = `$min_ma=${period.lag}&max_ma=${period.eag}`;
+    item.value = index;
     console.log('all periods in list: ', item.value);
     listOfPeriods.appendChild(item);
+    item.addEventListener('click', (evt) => {
+      console.log(evt);
+      PubSub.publish('TimelineMenu:selecte-period', evt);
+    })
   })
   timeline.appendChild(listOfPeriods);
 }
