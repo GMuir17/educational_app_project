@@ -13,6 +13,7 @@ body {
 #timeline{
   grid-area: 1 / 1 / auto / auto;
   background-color: #25222B;
+  color: #f4f4f4;
 }
 
 #hero-container{
@@ -24,6 +25,20 @@ body {
 
 .hero-image{
   height: 75vh;
+  width: 73vw;
+  object-fit: cover;
+}
+
+#welcome{
+  position: absolute;
+  height: 20vh;
+  width: 25vw;
+  background-color: #25222B;
+  color: #f4f4f4;
+  bottom: 2.5vh;
+  right: 2.5vw;
+
+  padding: 15px;
 }
 
 #map{
