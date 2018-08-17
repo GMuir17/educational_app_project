@@ -23,6 +23,7 @@ Dinosaur.prototype.get = function () {
       console.log(dinosaurs);
       // const filterNames = filterByGenusName(dinosaurs.records);
       const dinosaursData = filterDinosaurData(dinosaurs.records);
+      const dinosaursDataUnique = filterByGenusName(dinosaursData);
       console.log(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaurs);
     })
@@ -47,12 +48,22 @@ function filterDinosaurData(dinosaurs) {
   return newArray;
 }
 
-// function filterByGenusName(dinosaurs) {
-//   const names = firstname(dinosaurs);
-//   dinosaurs.forEach((dinosaur) => {
-//     if (dinosaur.tna)
-//   })
-//
-// }
+function filterByGenusName(dinosaurs) {
+  const names = getFirstName(dinosaurs);
+  console.log(names);
+  // dinosaurs.forEach((dinosaur) => {
+  //   if (dinosaur.tna)
+  // })
+  return null;
+}
+
+function getFirstName(dinosaurs) {
+  const arrayOfNames = []
+  dinosaurs.forEach((dinosaur) => {
+    const newNames = dinosaur.name.split(' ');
+    arrayOfNames.push(newNames[0]);
+  })
+  return arrayOfNames;
+}
 
 module.exports = Dinosaur;
