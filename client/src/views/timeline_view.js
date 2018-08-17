@@ -35,8 +35,8 @@ function renderTimeline(periods, timeline) {
     console.log('all periods in list: ', item.value);
     listOfPeriods.appendChild(item);
     item.addEventListener('click', (evt) => {
-      console.log(evt);
-      PubSub.publish('TimelineMenu:selecte-period', evt);
+      const selectedPeriod = evt.target.value;
+      PubSub.publish('TimelineMenu:selected-period', selectedPeriod);
     })
   })
   timeline.appendChild(listOfPeriods);

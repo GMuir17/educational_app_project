@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const timePeriod = new TimePeriod();
   timePeriod.get();
+  timePeriod.bindingEvents();
 
 
 
