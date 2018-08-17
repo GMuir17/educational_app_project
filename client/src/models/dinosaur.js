@@ -32,18 +32,19 @@ Dinosaur.prototype.get = function () {
 }
 
 function filterDinosaurData(dinosaurs) {
+  const newArray = [];
   dinosaurs.forEach((dinosaur) => {
-    dinosaur = {
+    dino = {
       name: dinosaur.tna,
-      longitude: dinosaur.lng,
-      latitude: dinosaur.lat,
-      enviroment: dinosaur.jed,
+      coords: [dinosaur.lat, dinosaur.lng],
+      enviroment: dinosaur.jev,
       diet: dinosaur.jdt,
       range: `${dinosaur.eag} - ${dinosaur.lag}`,
       imageId: dinosaur.img
     }
+    newArray.push(dino)
   })
-  return dinosaurs;
+  return newArray;
 }
 
 // function filterByGenusName(dinosaurs) {
@@ -51,7 +52,7 @@ function filterDinosaurData(dinosaurs) {
 //   dinosaurs.forEach((dinosaur) => {
 //     if (dinosaur.tna)
 //   })
-
-}
+//
+// }
 
 module.exports = Dinosaur;
