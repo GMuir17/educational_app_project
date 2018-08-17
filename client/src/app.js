@@ -1,5 +1,6 @@
 const leaflet = require('leaflet');
 const tilesetKey = require('./helpers/tileset_key.js')
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
   const map = L.map('map').setView([55.9472, -3.2017], 13);

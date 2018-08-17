@@ -1,3 +1,11 @@
+body {
+  background-color: #96A5A1;
+}
+
+.hero-image {
+  height: 75vh;
+}
+
 #map{
   height: 50vh;
 }
