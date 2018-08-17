@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   //   accessToken: tilesetKey
   // }).addTo(map);
 
-  const timelineNav = document.querySelector('nav#timeline');
+  const timelineNav = document.querySelector('#timeline-container');
+  console.log(timelineNav);
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
 
