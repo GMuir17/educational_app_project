@@ -6,17 +6,13 @@ const Map = function () {
 }
 
 Map.prototype.bindEvents = function () {
+  // TODO: change from using all dinosaurs to selected dinosaur
  PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
    const dinosaur = evt.detail[0];
    console.log('dinosaur:', dinosaur);
    this.createMap(dinosaur)
  })
 }
-
-// Map.prototype.createFossilMap = function (dinosaur) {
-//   this.createMap(dinosaur.coords)
-//   L.addMarkers(dinosaur.coords, this.createIcon(dinosaur.imageId));
-// };
 
 Map.prototype.createMap = function (dinosaur) {
   const map = L.map('map').setView(dinosaur.coords[0], 2);
@@ -35,11 +31,5 @@ Map.prototype.createMap = function (dinosaur) {
 Map.prototype.createIcon = function (imageID) {
   L.icon(`https://paleobiodb.org/data1.2/taxa/thumb.png?id=${imageID}`);
 };
-
-// Map.prototype.addMarkers = function (coordinates, icon) {
-//  coordinates.forEach((coordinate, index) => {
-//    L.marker(coordinate, icon).addTo(map)
-//  })
-// };
 
 module.exports = Map
