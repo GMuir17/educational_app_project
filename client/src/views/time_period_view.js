@@ -37,9 +37,8 @@ TimePeriodView.prototype.renderContainer = function (dinosaurs) {
   nav.appendChild(summaryList);
 
   const listItem = document.createElement('ul');
-  listItem.textContent = "Summary";
+  listItem.textContent = "All Dinos";
   summaryList.appendChild(listItem);
-
   // TODO: eventually pass this the dinosaurs.period
   this.renderDescription(dinosaurs)
 };
@@ -48,6 +47,7 @@ TimePeriodView.prototype.renderDescription = function (periodDescription) {
   const descriptionParagraph = document.createElement('p');
   descriptionParagraph.classList.add("period-summary");
   descriptionParagraph.textContent = "Imagine a T-Rex trying to type quickly";
+  this.container.appendChild(descriptionParagraph);
 };
 
 module.exports = TimePeriodView;
