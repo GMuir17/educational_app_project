@@ -8,6 +8,7 @@ const TimePeriodView = function (container) {
 TimePeriodView.prototype.bindEvents = function () {
   // TODO: make sure this channel matches with the wiki view
   PubSub.subscribe('FakeData:a-test', (evt) => {
+    this.container.innerHTML = '';
     console.log('timeperiodview:', evt.detail);
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
@@ -21,7 +22,6 @@ TimePeriodView.prototype.render = function (dinosaurs) {
     // TODO: should I use "article.dinosaur-preview" here?
     const article = document.createElement('article');
     article.classList.add("dinosaur-preview");
-    console.log("render", article);
     const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
     dinosaurPreviewView.render()
     this.container.appendChild(article);
