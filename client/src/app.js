@@ -2,6 +2,7 @@ const leaflet = require('leaflet');
 const tilesetKey = require('./helpers/tileset_key.js')
 const TimePeriod = require('./models/time_period.js')
 const TimelineView = require('./views/timeline_view.js')
+const DietView = require('./views/diet_view.js')
 const Dinosaur = require('./models/dinosaur.js');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(timelineNav);
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
+
+  const dietView = new DietView()
+  dietView.bindingEvents();
+
+  const dinosaur = new Dinosaur();
+  dinosaur.bindingEvents();
 
   const timePeriod = new TimePeriod();
   timePeriod.get();
