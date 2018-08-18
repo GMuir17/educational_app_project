@@ -25,4 +25,10 @@ TimePeriodView.prototype.render = function (dinosaurs) {
   });
 };
 
+TimePeriodView.prototype.renderDescription = function (periodDescription) {
+  const descriptionParagraph = document.createElement('p');
+  descriptionParagraph.classList = "period-summary";
+  descriptionParagraph.textContent = periodDescription;
+};
+
 module.exports = TimePeriodView;
