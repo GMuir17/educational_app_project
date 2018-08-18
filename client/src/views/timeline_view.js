@@ -22,6 +22,7 @@ Timeline.prototype.renderTimeline = function (periods)  {
     listOfPeriods.appendChild(item);
     
     item.addEventListener('click', (evt) => {
+      console.log('all periods in list: ', evt.target.value);
       const selectedPeriod = evt.target.value;
       PubSub.publish('TimelineMenu:selected-period', selectedPeriod);
       // TODO: remove this publish, it was just a 'seed'
