@@ -11,7 +11,6 @@ DinosaurPreviewView.prototype.render = function () {
   this.container.appendChild(previewDescription);
 
   const previewImage = this.createImage();
-  console.log("image", previewImage);
   this.container.appendChild(previewImage);
 
   // this.makeEventListener();

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   timePeriod.get();
   timePeriod.bindingEvents();
 
-  const timePeriodContainer = document.querySelector('#time-period-display');
+  const timePeriodContainer = document.querySelector('#time-period-display-container');
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
 });
