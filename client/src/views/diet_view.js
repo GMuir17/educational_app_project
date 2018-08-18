@@ -5,38 +5,33 @@ const DietView = function (tags) {
 }
 
 DietView.prototype.bindingEvents = function () {
-  PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
-    const dinosaurs = evt.detail;
-    const UniqueDiets = getUniqueDiets(dinosaurs);
-    this.renderTags(uniqueDiets);
+  PubSub.subscribe('Diet:all-diets-ready', (evt) => {
+    const diets = evt.detail;
+    this.renderTags(diets);
   })
 };
 
-function getUniqueDiets(dinosaurs) {
-  const filteredDiets = dinosaurs.reduce((uniqueDiets, dinosaur, index) => {
-    const dietIsUnique = !uniqueDiets.some((uniqueDiet) => {
-      return uniqueDiet === dinosaur.diet;
-    })
 
-    console.log('asdfasdfh:', dietIsUnique);
-    if (dietIsUnique) {
-      uniqueDiets.push(dinosaur.diet)
-    }
-    return uniqueDiets
-  }, []);
-  console.log(filteredDiets);
-  return filteredDiets;
-}
-
-DietView.prototype.renderTags = function (dinosaurs) {
+DietView.prototype.renderTags = function (diets) {
   const tagsList = document.createElement('ul');
     const all = document.createElement('li');
-    all.textContent = dinosaurs[0].period;
+    all.textContent = 'Info';
     all.value = -1;
+    item.addEventListener('click', (evt) => {
+      PubSub.publish('DietView:selected-diet', all.value);
+    })
   tagsList.appendChild(all);
-  dinosaurs.forEach((dinosaur) => {
-    if(dinosaur.diet === 'carnivore' || dinosaur.diet === 'herbivore' || dinosaur.diet === 'omnivore')
-    const item = document.createElement('li');
+
+  diets.forEach((diet, index) => {
+    if(diet === 'carnivore' || diet === 'herbivore' || diet === 'omnivore') {
+      const item = document.createElement('li');
+      item.textContent = diet;
+      item.value = index;
+      item.addEventListener('click', (evt) => {
+        PubSub.publish('DietView:selected-diet', item.value);
+      })
+      tagsList.appendChild(item);
+    }
 
     item.textContent
   })
