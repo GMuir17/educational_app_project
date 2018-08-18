@@ -1,7 +1,7 @@
 #dinosaur-view{
   position: absolute;
-  left: 9vw;
-  top: 12vh;
+  left: 25%;
+  top: 15%;
   height: 60vh;
   width: 60vw;
   background-color: #96A5A1;
@@ -16,6 +16,7 @@
 #info-para{
   grid-area: 1 / 1 / span 1 / span 1;
   margin: 20px;
+  padding: 25px;
 }
 
 #map{
@@ -29,6 +30,7 @@
   background-color: #25222B;
   box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 20px;
+  padding: 25px;
 }
 
 #dinosaur-image-container{

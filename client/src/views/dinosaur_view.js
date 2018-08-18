@@ -5,23 +5,27 @@ const DinosaurView = function (element) {
 }
 
 DinosaurView.prototype.bindEvents = function () {
-  PubSub.subscribe(('', evt) => {
+  PubSub.subscribe ('TimelineMenu:fake-dino', (evt) => {
     this.render(evt.detail);
-  })
+  });
 }
 
 DinosaurView.prototype.render = function (dinosaur) {
   const dinosaurDiv = document.createElement('article');
+  console.log(dinosaurDiv);
   dinosaurDiv.id = "dinosaur-view";
 
-  const infoPara = DinosaurView.createInfoPara(dinosaur);
+  const infoPara = this.createInfoPara(dinosaur);
   dinosaurDiv.appendChild(infoPara);
 
-  const dinosaurImage = DinosaurView.createImage(dinosaur.imageURL);
+  const dinosaurImage = this.createImage(dinosaur.imageURL);
   dinosaurDiv.appendChild(dinosaurImage)
 
-  const factFile = DinosaurView.createFactFile(dinosaur.facts);
+  const factFile = this.createFactFile(dinosaur.facts);
   dinosaurDiv.appendChild(factFile);
+
+  const mapContainer = this.createMapElement();
+  dinosaurDiv.appendChild(mapContainer);
 
   this.element.appendChild(dinosaurDiv);
 };
@@ -35,21 +39,30 @@ DinosaurView.prototype.createInfoPara = function (dinosaur) {
   paragraph.textContent = `${dinosaur.description}`
   section.appendChild(title);
   section.appendChild(paragraph);
+  return section;
 };
 
 DinosaurView.prototype.createImage = function (image) {
   const container = document.createElement('section');
   container.id = 'dinosaur-image-container';
-  const image = document.createElement('img');
-  image.setAttribute('src', '${image}');
-  image.id = 'dinosaur-image';
-  container.appendChild(image);
+  const dinosaurImage = document.createElement('img');
+dinosaurImage.setAttribute('src', `${image}`);
+dinosaurImage.id = 'dinosaur-image';
+  container.appendChild(dinosaurImage);
+  return container;
 };
 
-dinosaurView.prototype.createFactFile = function (facts) {
-  const facts = document.createElement('p');
-  facts.id = 'fact-file'
-  facts.textContent = '${facts}'
+DinosaurView.prototype.createFactFile = function (facts) {
+  const factFile = document.createElement('p');
+  factFile.id = 'fact-file'
+  factFile.textContent = `${facts}`;
+  return factFile;
 };
 
-module.exports = dinosaurView;
+DinosaurView.prototype.createMapElement = function () {
+  const div = document.createElement('div');
+  div.id = 'map';
+  return div;
+};
+
+module.exports = DinosaurView;

@@ -6,6 +6,7 @@ const DietView = require('./views/diet_view.js');
 const Diet = require('./models/diet.js');
 const Dinosaur = require('./models/dinosaur.js');
 const Map = require('./models/map.js')
+const DinosaurView = require('./views/dinosaur_view.js')
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
@@ -27,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriod = new TimePeriod();
   timePeriod.get();
   timePeriod.bindingEvents();
+
+  const dinosaurViewElement = document.querySelector('body')
+  const dinosaurView = new DinosaurView(dinosaurViewElement);
+  dinosaurView.bindEvents();
 
   const map = new Map();
   map.bindEvents();
