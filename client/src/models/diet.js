@@ -6,14 +6,21 @@ const Diet = function () {
 
 Diet.prototype.bindingEvents = function () {
   PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
-    const dinosaurs = evt.detail;
-    const uniqueDiets = getUniqueDiets(dinosaurs);
+    this.dinosaurs = evt.detail;
+    const uniqueDiets = getUniqueDiets(this.dinosaurs);
     const uniqueDietsSorted = uniqueDiets.sort();
     PubSub.publish('Diet:all-diets-ready', uniqueDietsSorted);
 
     PubSub.subscribe('DietView:selected-diet', (evt) => {
-      const selectedIndex = evt.target.value;
-      console.log(selectedIndex); 
+      const selectedIndex = evt.detail;
+      if (selectedIndex === -1) {
+        PubSub.publish('Dinosaur:all-dinosaurs-ready', this.dinosaurs)
+      }
+      else {
+        const selectedDiet = uniqueDietsSorted[selectedIndex];
+        const filteredDinosaurs = this.getDinosaursByDiet(selectedDiet);
+        PubSub.publish('Dinosaur:all-dinosaurs-ready', filteredDiets);
+      }
     })
   })
 };
@@ -24,7 +31,6 @@ function getUniqueDiets(dinosaurs) {
       return uniqueDiet === dinosaur.diet;
     })
 
-    console.log('asdfasdfh:', dietIsUnique);
     if (dietIsUnique) {
       uniqueDiets.push(dinosaur.diet)
     }
@@ -33,6 +39,10 @@ function getUniqueDiets(dinosaurs) {
   console.log(filteredDiets);
   return filteredDiets;
 }
+
+Diet.prototype.getDinosaursByDiet = function (dietSelected) {
+  return this.dinosaurs.filter(dinosaur => dinosaur.diet === dietSelected);
+};
 
 
 module.exports = Diet;
