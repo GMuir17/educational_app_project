@@ -22,7 +22,6 @@ TimePeriod.prototype.bindingEvents = function () {
 TimePeriod.prototype.get = function () {
   this.request.get()
     .then((periods) => {
-      console.log(periods);
       this.timelapse = periods.records;
       PubSub.publish('TimePeriod:all-periods-ready', periods.records);
     })

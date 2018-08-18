@@ -1,12 +1,13 @@
 const PubSub = require('../helpers/pub_sub.js');
 
 const DietView = function (tags) {
-  this.tags = tags
+  this.tags = tags;
 }
 
 DietView.prototype.bindingEvents = function () {
   PubSub.subscribe('Diet:all-diets-ready', (evt) => {
     const diets = evt.detail;
+    this.tags.innerHTML = '';
     this.renderTags(diets);
   })
 };
@@ -27,13 +28,14 @@ DietView.prototype.renderTags = function (diets) {
       const item = document.createElement('li');
       item.textContent = diet;
       item.value = index;
+      tagsList.appendChild(item);
+
       item.addEventListener('click', (evt) => {
         PubSub.publish('DietView:selected-diet', item.value);
       })
-      tagsList.appendChild(item);
     }
-    console.log(tagsList);
   })
+  this.tags.appendChild(tagsList);
 };
 
 module.exports = DietView;

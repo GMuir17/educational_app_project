@@ -8,19 +8,20 @@ const Dinosaur = require('./models/dinosaur.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
-  const map = L.map('map').setView([55.9472, -3.2017], 13);
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: tilesetKey
-  }).addTo(map);
+  // const map = L.map('map').setView([55.9472, -3.2017], 13);
+  // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+  //   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  //   maxZoom: 18,
+  //   id: 'mapbox.streets',
+  //   accessToken: tilesetKey
+  // }).addTo(map);
 
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
 
-  const dietView = new DietView()
+  const dietNav = document.querySelector('nav#families');
+  const dietView = new DietView(dietNav);
   dietView.bindingEvents();
 
   const diet = new Diet();
