@@ -7,8 +7,14 @@ const Diet = function () {
 Diet.prototype.bindingEvents = function () {
   PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
     const dinosaurs = evt.detail;
-    const UniqueDiets = getUniqueDiets(dinosaurs);
-    PubSub.publish('Diet:all-diets-ready', uniqueDiets)
+    const uniqueDiets = getUniqueDiets(dinosaurs);
+    const uniqueDietsSorted = uniqueDiets.sort();
+    PubSub.publish('Diet:all-diets-ready', uniqueDietsSorted);
+
+    PubSub.subscribe('DietView:selected-diet', (evt) => {
+      const selectedIndex = evt.target.value;
+      console.log(selectedIndex); 
+    })
   })
 };
 
@@ -27,4 +33,6 @@ function getUniqueDiets(dinosaurs) {
   console.log(filteredDiets);
   return filteredDiets;
 }
+
+
 module.exports = Diet;

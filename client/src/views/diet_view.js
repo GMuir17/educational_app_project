@@ -17,7 +17,7 @@ DietView.prototype.renderTags = function (diets) {
     const all = document.createElement('li');
     all.textContent = 'Info';
     all.value = -1;
-    item.addEventListener('click', (evt) => {
+    all.addEventListener('click', (evt) => {
       PubSub.publish('DietView:selected-diet', all.value);
     })
   tagsList.appendChild(all);
@@ -32,8 +32,7 @@ DietView.prototype.renderTags = function (diets) {
       })
       tagsList.appendChild(item);
     }
-
-    item.textContent
+    console.log(tagsList);
   })
 };
 

@@ -1,8 +1,9 @@
 const leaflet = require('leaflet');
-const tilesetKey = require('./helpers/tileset_key.js')
-const TimePeriod = require('./models/time_period.js')
-const TimelineView = require('./views/timeline_view.js')
-const DietView = require('./views/diet_view.js')
+const tilesetKey = require('./helpers/tileset_key.js');
+const TimePeriod = require('./models/time_period.js');
+const TimelineView = require('./views/timeline_view.js');
+const DietView = require('./views/diet_view.js');
+const Diet = require('./models/diet.js');
 const Dinosaur = require('./models/dinosaur.js');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     accessToken: tilesetKey
   }).addTo(map);
 
-  const dinosaur = new Dinosaur();
-  dinosaur.bindingEvents();
-
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
 
   const dietView = new DietView()
   dietView.bindingEvents();
+
+  const diet = new Diet();
+  diet.bindingEvents();
 
   const dinosaur = new Dinosaur();
   dinosaur.bindingEvents();
