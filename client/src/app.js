@@ -10,9 +10,6 @@ const Map = require('./models/map.js')
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
 
-  const dinosaur = new Dinosaur();
-  dinosaur.bindingEvents();
-
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
