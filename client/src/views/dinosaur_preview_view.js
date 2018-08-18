@@ -15,6 +15,8 @@ DinosaurPreviewView.prototype.render = function () {
 
   const previewImage = this.createImage();
   this.container.appendChild(previewImage);
+
+  this.makeEventListener();
 };
 
 DinosaurPreviewView.prototype.createTitle = function () {
@@ -39,7 +41,12 @@ DinosaurPreviewView.prototype.createImage = function () {
   image.alt = "A very good boy";
 };
 
+DinosaurPreviewView.prototype.makeEventListener = function () {
+  this.container.addEventListener('click', (evt) => {
+    const selectedDinosaur = evt.target.value //maybe
+    PubSub.publish('DinosaurPreviewView:selected-dinosaur');
+  });
+};
 
-// add event listener for click
 
 module.exports = DinosaurPreviewView;
