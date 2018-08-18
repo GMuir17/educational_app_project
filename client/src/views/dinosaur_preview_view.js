@@ -14,9 +14,9 @@ DinosaurPreviewView.prototype.render = function () {
   this.container.appendChild(previewDescription);
 
   const previewImage = this.createImage();
-  this.container.appendChild(previewImage);
+  // this.container.appendChild(previewImage);
 
-  this.makeEventListener();
+  // this.makeEventListener();
 };
 
 DinosaurPreviewView.prototype.createTitle = function () {
@@ -41,12 +41,12 @@ DinosaurPreviewView.prototype.createImage = function () {
   image.alt = "A very good boy";
 };
 
-DinosaurPreviewView.prototype.makeEventListener = function () {
-  this.container.addEventListener('click', (evt) => {
-    const selectedDinosaur = evt.target.value //maybe
-    PubSub.publish('DinosaurPreviewView:selected-dinosaur');
-  });
-};
+// DinosaurPreviewView.prototype.makeEventListener = function () {
+//   this.container.addEventListener('click', (evt) => {
+//     const selectedDinosaur = evt.target.value //maybe
+//     PubSub.publish('DinosaurPreviewView:selected-dinosaur');
+//   });
+// };
 
 
 module.exports = DinosaurPreviewView;
