@@ -3,6 +3,7 @@ const tilesetKey = require('./helpers/tileset_key.js')
 const TimePeriod = require('./models/time_period.js')
 const TimelineView = require('./views/timeline_view.js')
 const Dinosaur = require('./models/dinosaur.js');
+const TimePeriodView = require('./views/time_period_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
@@ -25,5 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   timePeriod.get();
   timePeriod.bindingEvents();
 
-
+  const timePeriodContainer = document.querySelector('#time-period-display');
+  const timePeriodView = new TimePeriodView(timePeriodContainer);
+  timePeriodView.bindEvents();
 })
