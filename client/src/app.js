@@ -5,6 +5,7 @@ const TimelineView = require('./views/timeline_view.js');
 const DietView = require('./views/diet_view.js');
 const Diet = require('./models/diet.js');
 const Dinosaur = require('./models/dinosaur.js');
+const Wikipedia = require('./models/wikipedia.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
@@ -23,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const dietNav = document.querySelector('nav#families');
   const dietView = new DietView(dietNav);
   dietView.bindingEvents();
+
+  const wiki = new Wikipedia();
+  wiki.bindingEvents();
 
   const diet = new Diet();
   diet.bindingEvents();
