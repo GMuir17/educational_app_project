@@ -20,6 +20,7 @@ TimePeriodView.prototype.render = function (dinosaurs) {
   this.renderDescription(dinosaurs.period)
 
   dinosaurs.forEach((dinosaur) => {
+    // TODO: should I use "article.dinosaur-preview" here?
     const dinosaurPreviewView = new DinosaurPreviewView(this.container, dinosaur);
     dinosaurPreviewView.render()
   });
@@ -27,7 +28,7 @@ TimePeriodView.prototype.render = function (dinosaurs) {
 
 TimePeriodView.prototype.renderDescription = function (periodDescription) {
   const descriptionParagraph = document.createElement('p');
-  descriptionParagraph.classList = "period-summary";
+  descriptionParagraph.classList.add("period-summary");
   descriptionParagraph.textContent = periodDescription;
 };
 
