@@ -19,9 +19,9 @@ Timeline.prototype.renderTimeline = function (periods)  {
     item.textContent = period.nam;
     item.value = index;
     item.classList = "time-period"
-    console.log('all periods in list: ', item.value);
     listOfPeriods.appendChild(item);
     item.addEventListener('click', (evt) => {
+      console.log('all periods in list: ', evt.target.value);
       const selectedPeriod = evt.target.value;
       PubSub.publish('TimelineMenu:selected-period', selectedPeriod);
     })
