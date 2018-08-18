@@ -47,7 +47,12 @@ DinosaurView.prototype.createImage = function (image) {
   const container = document.createElement('section');
   container.id = 'dinosaur-image-container';
   const image = document.createElement('img');
-  
+  image.setAttribute('src', '${image}');
+  image.id = 'dinosaur-image';
+  container.appendChild(image);
+};
+
+dinosaurView.prototype.createFactFile = function (facts) {
 
 };
 
