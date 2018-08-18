@@ -4,9 +4,6 @@ const DinosaurPreviewView = function (container, dinosaur) {
 };
 
 DinosaurPreviewView.prototype.render = function () {
-  const previewContainer = document.createElement('div');
-  this.container.appendChild(previewContainer);
-
   const previewTitle = this.createTitle();
   this.container.appendChild(previewTitle);
 

@@ -24,6 +24,7 @@ TimePeriodView.prototype.render = function (dinosaurs) {
     console.log("render", article);
     const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
     dinosaurPreviewView.render()
+    this.container.appendChild(article);
   });
 };
 
