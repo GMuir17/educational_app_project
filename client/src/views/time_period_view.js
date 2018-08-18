@@ -1,5 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
-// require dinosaur_preview_view
+const DinosaurPreviewView = require('./dinosaur_preview_view.js');
 
 const TimePeriodView = function (container) {
   this.container = container;
@@ -9,13 +9,20 @@ TimePeriodView.prototype.bindEvents = function () {
   // TODO: make sure this channel matches with the wiki view
   PubSub.subscribe('Wikipedia:wiki-data-ready', (evt) => {
     console.log('timeperiodview:', "Hiya");
-    const dinosaurData = evt.detail;
-    this.render(dinosaurData);
+    const dinosaurs = evt.detail;
+    this.render(dinosaurs);
   });
 };
 
-TimePeriodView.prototype.render = function (dinosaurData) {
-  console.log('render', "Hey there");
+TimePeriodView.prototype.render = function (dinosaurs) {
+  this.container.innerHTML = '';
+
+  this.renderDescription(dinosaurs.period)
+
+  dinosaurs.forEach((dinosaur) => {
+    const dinosaurPreviewView = new DinosaurPreviewView(this.container, dinosaur);
+    dinosaurPreviewView.render()
+  });
 };
 
 module.exports = TimePeriodView;
