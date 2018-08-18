@@ -56,7 +56,7 @@ TimePeriodView.prototype.renderDescription = function (periodDescription) {
 
 TimePeriodView.prototype.createMain = function () {
   const timePeriodContainer = document.createElement('main');
-  timePeriodContainer.id = "#time-period-display";
+  timePeriodContainer.id = "time-period-display";
   return timePeriodContainer;
 };
 
