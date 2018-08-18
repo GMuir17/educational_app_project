@@ -10,11 +10,7 @@ const Dinosaur = function () {
 Dinosaur.prototype.bindingEvents = function () {
   PubSub.subscribe('Timeline:selected-period-ready', (evt) => {
     const period = evt.detail;
-<<<<<<< HEAD
-    // console.log(evt.detail);
-=======
     console.log(evt);
->>>>>>> develop
     this.url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=dinosauria^aves&show=coords,ident,ecospace,img&idreso=genus&min_ma=${period.lateDate}&max_ma=${period.earlyDate}`;
     this.periodSelected = period.periodName;
     console.log('eooooo?:', this.periodSelected);
@@ -28,11 +24,7 @@ Dinosaur.prototype.get = function () {
   this.request.get()
     .then((dinosaurs) => {
       // console.log(dinosaurs);
-<<<<<<< HEAD
-      const dinosaursData = filterDinosaurData(dinosaurs.records);
-=======
       const dinosaursData = this.filterDinosaurData(dinosaurs.records);
->>>>>>> develop
       // console.log('dinosaurs data:', dinosaursData);
       const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaursDataUnique);

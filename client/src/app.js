@@ -5,7 +5,8 @@ const TimelineView = require('./views/timeline_view.js');
 const DietView = require('./views/diet_view.js');
 const Diet = require('./models/diet.js');
 const Dinosaur = require('./models/dinosaur.js');
-const Map = require('./models/map.js')
+const Map = require('./models/map.js');
+const TimePeriodView = require('./views/time_period_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
