@@ -14,18 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     accessToken: tilesetKey
   }).addTo(map);
 
-<<<<<<< HEAD
   const dinosaur = new Dinosaur();
   dinosaur.bindingEvents();
 
   const timelineNav = document.querySelector('#timeline-container');
-=======
-  const timelineNav = document.querySelector('#timeline-container');
-  console.log(timelineNav);
->>>>>>> 202111228786fba50b28354bd5ed73e88c118517
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
-  
+
   const timePeriod = new TimePeriod();
   timePeriod.get();
   timePeriod.bindingEvents();
