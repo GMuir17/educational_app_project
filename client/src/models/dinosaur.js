@@ -3,14 +3,17 @@ const RequestHelper = require('../helpers/request.js');
 
 const Dinosaur = function () {
   this.url = null;
+  this.periodSelected = null;
 };
 
 
 Dinosaur.prototype.bindingEvents = function () {
   PubSub.subscribe('Timeline:selected-period-ready', (evt) => {
     const period = evt.detail;
-    console.log(evt.detail);
+    console.log(evt);
     this.url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=dinosauria^aves&show=coords,ident,ecospace,img&idreso=genus&min_ma=${period.lateDate}&max_ma=${period.earlyDate}`;
+    this.periodSelected = period.periodName;
+    console.log('eooooo?:', this.periodSelected);
     this.request = new RequestHelper(this.url);
     this.get();
   })
@@ -20,9 +23,9 @@ Dinosaur.prototype.bindingEvents = function () {
 Dinosaur.prototype.get = function () {
   this.request.get()
     .then((dinosaurs) => {
-      console.log(dinosaurs);
-      const dinosaursData = filterDinosaurData(dinosaurs.records);
-      console.log('dinosaurs data:', dinosaursData);
+      // console.log(dinosaurs);
+      const dinosaursData = this.filterDinosaurData(dinosaurs.records);
+      // console.log('dinosaurs data:', dinosaursData);
       const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaursDataUnique);
     })
@@ -31,8 +34,9 @@ Dinosaur.prototype.get = function () {
     })
 }
 
-function filterDinosaurData(dinosaurs) {
+Dinosaur.prototype.filterDinosaurData = function (dinosaurs) {
   const newArray = [];
+
   dinosaurs.forEach((dinosaur) => {
     const newName = dinosaur.tna.split(' ');
     dino = {
@@ -41,7 +45,8 @@ function filterDinosaurData(dinosaurs) {
       enviroment: dinosaur.jev,
       diet: dinosaur.jdt,
       range: `${dinosaur.eag} - ${dinosaur.lag}`,
-      imageId: dinosaur.img
+      imageId: dinosaur.img,
+      period: this.periodSelected
     }
     newArray.push(dino)
   })
