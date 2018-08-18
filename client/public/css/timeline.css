@@ -1,0 +1,46 @@
+#timeline-container{
+  display: grid;
+  grid-template-columns: 40px 5px 1fr;
+  grid-template-rows: 1fr;
+}
+
+#timeline-graphic {
+  grid-area: 1 / 2 / span 1 / span 1;
+  background-color: #f4f4f4;
+  grid-template-columns: 1fr;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#timeline-list{
+  margin: 0px;
+  grid-area: 1 /2/span 1/span 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+  list-style: none;
+  align-items: center;
+}
+
+.time-period {
+  grid-area: auto / 1 / span 1 / span 1;
+  align-self: center;
+  padding-top: 25%;
+  padding-bottom: 25%;
+}
+
+.time-period:hover{
+  background-image: linear-gradient(#25222B, #4A4456, #4A4456, #4A4456, #25222B);
+}
+
+.time-period-bullet {
+  grid-area: auto / 1 / span 1 / span 1;
+  display: inline-block;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: #f4f4f4;
+}

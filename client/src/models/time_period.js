@@ -12,8 +12,8 @@ TimePeriod.prototype.bindingEvents = function () {
     selectedPeriod = this.timelapse[evt.detail];
     const periodReady = {
       periodName: selectedPeriod.nam,
-      earlyDate: selectedPeriod.eag,
-      lateDate: selectedPeriod.lag
+      earlyDate: Math.ceil(selectedPeriod.eag),
+      lateDate: Math.ceil(selectedPeriod.lag)
     }
     PubSub.publish('Timeline:selected-period-ready', periodReady);
   })
