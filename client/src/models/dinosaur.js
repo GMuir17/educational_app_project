@@ -21,12 +21,66 @@ Dinosaur.prototype.get = function () {
   this.request.get()
     .then((dinosaurs) => {
       console.log(dinosaurs);
-
+      const dinosaursData = filterDinosaurData(dinosaurs.records);
+      console.log('dinosaurs data:', dinosaursData);
+      const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaurs);
     })
     .catch((err) => {
       console.error(err);
     })
 }
+
+function filterDinosaurData(dinosaurs) {
+  const newArray = [];
+  dinosaurs.forEach((dinosaur) => {
+    const newName = dinosaur.tna.split(' ');
+    dino = {
+      name: newName[0],
+      coords: [dinosaur.lat, dinosaur.lng],
+      enviroment: dinosaur.jev,
+      diet: dinosaur.jdt,
+      range: `${dinosaur.eag} - ${dinosaur.lag}`,
+      imageId: dinosaur.img
+    }
+    newArray.push(dino)
+  })
+  return newArray;
+}
+
+function filterByGenusName(dinosaurs) {
+  const filteredDinosaurs = dinosaurs.reduce((uniqueDinosaurs, dinosaur, oldIndex) => {
+    // check if dinosaur is already in new array
+    const dinosaurIsUnique = !uniqueDinosaurs.some((uniqueDinosaur) => {
+      return uniqueDinosaur.name === dinosaur.name;
+    });
+
+    // if dinosaur is not in new array, then add it to new array
+    if (dinosaurIsUnique){
+      uniqueDinosaurs.push(dinosaur);
+    }
+    else {
+      // if dinosaur is already in new array, then find the object
+      const existingDinosaur = uniqueDinosaurs.find((existingDinosaur) => {
+        return existingDinosaur.name === dinosaur.name;
+      });
+
+      // if the object already has an array of coordinates, then add the current
+      // dinosaur's array of coords to it
+      if (Array.isArray(existingDinosaur.coords[0])) {
+        existingDinosaur.coords.push(dinosaur.coords)
+      }
+      else {
+        // if the object doesn't have an array of coordinates then add the old
+        // coords and the new ones to an array
+        existingDinosaur.coords = [existingDinosaur.coords, dinosaur.coords];
+      }
+    }
+    return uniqueDinosaurs;
+  }, [])
+  console.log('filteredDinosaurs:', filteredDinosaurs);
+  return filteredDinosaurs;
+}
+
 
 module.exports = Dinosaur;
