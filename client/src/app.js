@@ -3,10 +3,11 @@ const tilesetKey = require('./helpers/tileset_key.js')
 const TimePeriod = require('./models/time_period.js')
 const TimelineView = require('./views/timeline_view.js')
 const Dinosaur = require('./models/dinosaur.js');
+const Map = require('./models/map.js')
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JavaScript Loaded');
-  
+
   const dinosaur = new Dinosaur();
   dinosaur.bindingEvents();
 
@@ -18,5 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   timePeriod.get();
   timePeriod.bindingEvents();
 
+  const map = new Map();
+  map.bindEvents();
 
 })
