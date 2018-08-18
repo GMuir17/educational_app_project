@@ -31,4 +31,15 @@ DinosaurPreviewView.prototype.createDescription = function () {
   return description;
 };
 
+DinosaurPreviewView.prototype.createImage = function () {
+  const image = document.createElement('img');
+  image.classList.add("preview-image");
+  image.src = this.dinosaur.imageURL;
+  // TODO: change this;
+  image.alt = "A very good boy";
+};
+
+
+// add event listener for click
+
 module.exports = DinosaurPreviewView;
