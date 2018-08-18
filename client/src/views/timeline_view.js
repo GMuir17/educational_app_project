@@ -27,7 +27,7 @@ Timeline.prototype.renderTimeline = function (periods)  {
       const selectedDino = {
         name: "BananaRex",
         description: "A very big banana",
-        imageURL: "https://paleobiodb.org/data1.2/taxa/thumb.png?id=1666"
+        imageURL: "images/feathered-t-rex1.jpg"
       }
       const selectedDinosaurs = [selectedDino, selectedDino, selectedDino, selectedDino, selectedDino, selectedDino, selectedDino, selectedDino]
       PubSub.publish('FakeData:a-test', selectedDinosaurs);

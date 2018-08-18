@@ -11,7 +11,8 @@ DinosaurPreviewView.prototype.render = function () {
   this.container.appendChild(previewDescription);
 
   const previewImage = this.createImage();
-  // this.container.appendChild(previewImage);
+  console.log("image", previewImage);
+  this.container.appendChild(previewImage);
 
   // this.makeEventListener();
 };
@@ -36,6 +37,7 @@ DinosaurPreviewView.prototype.createImage = function () {
   image.src = this.dinosaur.imageURL;
   // TODO: change this;
   image.alt = "A very good boy";
+  return image;
 };
 
 // DinosaurPreviewView.prototype.makeEventListener = function () {
