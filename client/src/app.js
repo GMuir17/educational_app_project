@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     accessToken: tilesetKey
   }).addTo(map);
 
+  const dinosaur = new Dinosaur();
+  dinosaur.bindingEvents();
+
   const timelineNav = document.querySelector('#timeline-container');
-  console.log(timelineNav);
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
 
@@ -29,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriod = new TimePeriod();
   timePeriod.get();
   timePeriod.bindingEvents();
-
 
 
 })
