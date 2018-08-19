@@ -17,7 +17,7 @@ Wikipedia.prototype.bindingEvents = function () {
 
     Promise.all(dinosaursSelected.map(object => {
       console.log(object.name);
-      this.url = `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages|extracts&origin=*`;
+      this.url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
       const request = new RequestHelper(this.url);
       return request.get();
     }))
@@ -28,15 +28,25 @@ Wikipedia.prototype.bindingEvents = function () {
     })
     .catch((err) => {
       console.error(err);
+
     })
 
-
+    console.log(`wkik`, this.wikiDinosaurs);
+    console.log(`dinosaursSelected`, dinosaursSelected);
 
 // Wikipedia.prototype.mergeData = function () {
 //   this.dinosaurs.forEach((dinosaur, index) => {
 //     dinosaur.concat(this.wikiDinosaurs[index])
 //   })
 // };
+
+
+
+
+
+
+
+
     //  this.dinosaurs.forEach((dinosaur) => {
     //    this.dinosaur.name = evt.newName;
     // }.then() =>{
