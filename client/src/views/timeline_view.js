@@ -28,7 +28,8 @@ Timeline.prototype.renderTimeline = function (periods)  {
         name: "BananaRex",
         description: "A very big banana",
         imageURL: "images/feathered-t-rex1.jpg",
-        facts: 'Allosaurus was a large bipedal predator. Its skull was large and equipped with dozens of sharp, serrated teeth. It averaged 8.5 m (28 ft) in length, though fragmentary remains suggest it could have reached over 12 m (39 ft). Relative to the large and powerful hindlimbs, its three-fingered forelimbs were small, and the body was balanced by a long and heavily muscled tail.'}
+        facts: 'Allosaurus was a large bipedal predator. Its skull was large and equipped with dozens of sharp, serrated teeth. It averaged 8.5 m (28 ft) in length, though fragmentary remains suggest it could have reached over 12 m (39 ft). Relative to the large and powerful hindlimbs, its three-fingered forelimbs were small, and the body was balanced by a long and heavily muscled tail.',
+        coords: [[14.17430,-89.49160], [34.44424, 29.66071]]}
       const selectedDinosaurs = [selectedDino, selectedDino, selectedDino, selectedDino, selectedDino, selectedDino, selectedDino, selectedDino]
       PubSub.publish('FakeData:a-test', selectedDinosaurs);
     })

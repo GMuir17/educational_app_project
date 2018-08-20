@@ -21,6 +21,7 @@ Diet.prototype.bindEvents = function () {
         const filteredDinosaurs = this.getDinosaursByDiet(selectedDiet);
         // console.log(filteredDinosaurs);
         PubSub.publish('Dinosaur:all-dinosaurs-ready', filteredDinosaurs);
+        console.log(filteredDinosaurs);
       }
     })
   })

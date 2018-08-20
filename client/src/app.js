@@ -1,8 +1,8 @@
 const leaflet = require('leaflet');
 
 const tilesetKey = require('./helpers/tileset_key.js');
-const HeroImages = require('./helpers/hero_images.js');
 
+const HeroImages = require('./views/hero_images.js');
 const TimelineView = require('./views/timeline_view.js');
 const DietView = require('./views/diet_view.js');
 const DinosaurView = require('./views/dinosaur_view.js')
@@ -17,6 +17,7 @@ const Wikipedia = require('./models/wikipedia.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
 
   const imageContainer = document.querySelector('.hero-image')
   const heroImages = new HeroImages(imageContainer);
@@ -48,4 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
 
+  const map = new Map();
+  map.bindEvents();
 });

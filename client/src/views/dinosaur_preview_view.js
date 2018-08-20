@@ -8,7 +8,7 @@ const DinosaurPreviewView = function (container, dinosaur) {
 DinosaurPreviewView.prototype.render = function () {
   const previewImage = this.createImage();
   this.container.appendChild(previewImage);
-  
+
   const previewTitle = this.createTitle();
   this.container.appendChild(previewTitle);
 
@@ -44,7 +44,6 @@ DinosaurPreviewView.prototype.createImage = function () {
 DinosaurPreviewView.prototype.makeEventListener = function () {
   this.container.addEventListener('click', (evt) => {
     const selectedDinosaur = this.dinosaur;
-    console.log(selectedDinosaur);
     PubSub.publish('DinosaurPreviewView:selected-dinosaur', selectedDinosaur);
   });
 };
