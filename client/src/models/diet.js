@@ -36,7 +36,6 @@ function getUniqueDiets(dinosaurs) {
     }
     return uniqueDiets
   }, []);
-  console.log(filteredDiets);
   return filteredDiets;
 }
 

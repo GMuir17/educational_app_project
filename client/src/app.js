@@ -15,10 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindEvents();
+<<<<<<< HEAD
 
   const dietNav = document.querySelector('nav#families');
   const dietView = new DietView(dietNav);
   dietView.bindEvents();
+=======
+>>>>>>> 792793d298857570c5d1f942366145c41700d8ad
 
   const diet = new Diet();
   diet.bindEvents();
