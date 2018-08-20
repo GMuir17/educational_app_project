@@ -4,7 +4,6 @@ const RequestHelper = require('../helpers/request.js');
 const Wikipedia = function () {
   this.dinosaurs = null;
   this.wikiDinosaurs = null;
-  this.wikiImageId = null;
 };
 
 
@@ -27,9 +26,12 @@ Wikipedia.prototype.bindingEvents = function () {
 
       return promises;
     }, []))
-    .then((dinosaurData) => {
-      this.wikiDinosaurs = dinosaurData
-      console.log(dinosaurData);
+    .then((dinosaursData) => {
+      const wikiDinosaurs = dinosaursData
+      // console.log(dinosaursData);
+      const wikiDinosaursFiltered = filteredData(wikiDinosaurs);
+      const allDinosaursData = this.mergeData(dinosaursSelected, wikiDinosaursFiltered);
+      console.log('what is this?:', allDinosaursData);
     })
     .catch((err) => {
       console.error(err);
@@ -37,47 +39,33 @@ Wikipedia.prototype.bindingEvents = function () {
 
 
 
-    // Wikipedia.prototype.getImageId = function() {
-     //  this.url = 'https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*'
-     //  const request = new RequestHelper(this.url)
-     //  request.get();
-     // };
-
-//      Wikipedia.prototype.getImageUrl = function(imageId) {
-//   const request = new
-// };
-
-    console.log(`wkik`, this.wikiDinosaurs);
-    console.log(`dinosaursSelected`, dinosaursSelected);
-
-// Wikipedia.prototype.mergeData = function () {
-//   this.dinosaurs.forEach((dinosaur, index) => {
-//     dinosaur.concat(this.wikiDinosaurs[index])
-//   })
-// };
-
-
-
-
-
-
-
-
-    //  this.dinosaurs.forEach((dinosaur) => {
-    //    this.dinosaur.name = evt.newName;
-    // }.then() =>{
-       // this.url = `https://en.wikipedia.org/w/api.php?action=query&titles=${this.dinosaur.name}&format=json&prop=pageimages|extracts`
-    //     const request = new Request(url)
-    //     request.get()
-    //     .then((data) =>{
-    //       this.imageId = evt.imageId
-    //       this.url = `https://en.wikipedia.org/w/api.php?action=query&titles=${this.imageId}&format=json&prop=pageimages|extracts`
-    //     })
-    //  }
-
-
   })
 }
+
+function filteredData(wikiDinosaurs) {
+  const newArray = [];
+  for (i = 0; i < wikiDinosaurs.length; i++) {
+    const pageNumber = Object.keys(wikiDinosaurs[i].query.pages);
+    console.log(wikiDinosaurs[i].query.pages[pageNumber]);
+    if (i % 2  === 0) {
+      newArray.push(wikiDinosaurs[i].query.pages[pageNumber].extract)
+    }
+    else {
+      newArray.push(wikiDinosaurs[i].query.pages[pageNumber].pageimage);
+    }
+  }
+  return newArray;
+};
+
+Wikipedia.prototype.mergeData = function (dinosaursSelected, extraData) {
+  return dinosaursSelected.reduce((merged, dinosaur, index) => {
+    dinosaur.description = extraData[index * 2];
+    dinosaur.image = extraData[(index * 2) + 1]
+    merged.push(dinosaur);
+    return merged;
+  }, [])
+
+};
 
 
 module.exports = Wikipedia;
