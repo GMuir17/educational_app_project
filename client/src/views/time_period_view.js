@@ -27,6 +27,7 @@ TimePeriodView.prototype.bindEvents = function () {
     this.container.addEventListener('click', () => {
       PubSub.publish('DinosaurPreviewView:exit-click');
     });
+    // remove event listener
   });
 
 };
@@ -49,8 +50,8 @@ TimePeriodView.prototype.bindEvents = function () {
     const nav = document.createElement('nav');
     nav.id = "families";
     this.mainContainer.appendChild(nav);
-
-  this.renderDietTabs(nav);
+    console.log("NAV", nav);
+    this.renderDietTabs(nav);
 
   const summaryList = document.createElement('li');
   nav.appendChild(summaryList);
@@ -76,6 +77,7 @@ TimePeriodView.prototype.bindEvents = function () {
   };
 
 TimePeriodView.prototype.renderDietTabs = function (element) {
+  console.log("ELEMENT", element);
   const dietView = new DietView(element);
   dietView.bindEvents();
 };
