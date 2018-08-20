@@ -7,8 +7,10 @@ const DinosaurView = function (element) {
 DinosaurView.prototype.bindEvents = function () {
   PubSub.subscribe ('DinosaurPreviewView:selected-dinosaur', (evt) => {
     const dinosaur = evt.detail;
-    console.log(dinosaur);
     this.render(dinosaur);
+  });
+  PubSub.subscribe('DinosaurPreviewView:exit-click', () => {
+    this.deleteSelf();
   });
 }
 
@@ -66,6 +68,11 @@ DinosaurView.prototype.createMapElement = function () {
   const div = document.createElement('div');
   div.id = 'map';
   return div;
+};
+
+DinosaurView.prototype.deleteSelf = function () {
+  console.log("I'm deleted!");
+  this.element.innerHTML = '';
 };
 
 module.exports = DinosaurView;

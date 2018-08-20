@@ -43,8 +43,10 @@ DinosaurPreviewView.prototype.createImage = function () {
 DinosaurPreviewView.prototype.makeEventListener = function () {
   this.container.addEventListener('click', (evt) => {
     const selectedDinosaur = this.dinosaur;
-    console.log(selectedDinosaur);
     PubSub.publish('DinosaurPreviewView:selected-dinosaur', selectedDinosaur);
+    this.container.addEventListener('click', () => {
+      PubSub.publish('DinosaurPreviewView:exit-click');
+    });
   });
 };
 
