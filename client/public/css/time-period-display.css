@@ -9,7 +9,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 7.5% 10% 1fr 1fr;
-    color: #f4f4f4;
+  color: #f4f4f4;
+  z-index: 2;
 }
 
 #families {
@@ -55,4 +56,13 @@
 .preview-image {
   height: 150px;
   width: 150px;
+}
+
+.time-period-lightbox {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #00000080;
+  z-index: 1;
 }
