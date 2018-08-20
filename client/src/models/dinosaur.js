@@ -84,7 +84,7 @@ function filterByGenusName(dinosaurs) {
     }
     return uniqueDinosaurs;
   }, [])
-  console.log('filteredDinosaurs:', filteredDinosaurs);
+  // console.log('filteredDinosaurs:', filteredDinosaurs);
   return filteredDinosaurs;
 }
 

@@ -1,6 +1,8 @@
 body {
   background-color: #96A5A1;
   margin: 0px;
+  font-family: 'News Cycle', sans-serif;
+
 }
 
 #main-grid {
@@ -9,6 +11,19 @@ body {
   grid-template-rows: 1fr;
   height: 95vh;
 }
+
+h1 {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+h2 {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+h3 {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
 
 #timeline-container{
   grid-area: 1 / 1 / auto / auto;
