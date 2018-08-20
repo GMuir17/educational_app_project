@@ -15,13 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindEvents();
-<<<<<<< HEAD
-=======
-
-  const dietNav = document.querySelector('nav#families');
-  const dietView = new DietView(dietNav);
-  dietView.bindEvents();
->>>>>>> develop
 
   const diet = new Diet();
   diet.bindEvents();
@@ -40,8 +33,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriodContainer = document.querySelector('#time-period-display-container');
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
-<<<<<<< HEAD
 });
-=======
-})
->>>>>>> develop
