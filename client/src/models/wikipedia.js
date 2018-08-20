@@ -17,7 +17,6 @@ Wikipedia.prototype.bindingEvents = function () {
 
 
     Promise.all(this.dinosaursSelected.reduce((promises, object) => {
-      console.log(object.name);
       const url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
       const request = new RequestHelper(url);
       promises.push(request.get());
@@ -29,7 +28,6 @@ Wikipedia.prototype.bindingEvents = function () {
       return promises;
     }, []))
     .then((dinosaursData) => {
-      this.wikiDinosaurs = dinosaursData
 
       Promise.all(this.dinosaursSelected.reduce((promises, object) => {
         const imgAddress =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
@@ -42,7 +40,6 @@ Wikipedia.prototype.bindingEvents = function () {
           const imgObject = images;
           const imgAddress = getAddress(imgObject);
           Promise.all(imgAddress.reduce((promises, object) => {
-            console.log(object);
             const imgUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=File:${object}&prop=imageinfo&iiprop=url&format=json&origin=*`
             const requestImg = new RequestHelper(imgUrl);
             promises.push(requestImg.get());
@@ -51,11 +48,15 @@ Wikipedia.prototype.bindingEvents = function () {
           }, []))
           .then((imagesObject) => {
             this.wikiImages = getImagesUrl(imagesObject);
-
-            console.log(this.wikiImages);
+            this.mergeImages(this.wikiImages);
           })
         })
 
+        this.wikiDinosaurs = getExtraData(dinosaursData);
+        this.mergeData(this.wikiDinosaurs);
+        console.log('yujuuuuuuuu: ', this.dinosaursSelected);
+
+        
       // console.log(dinosaursData);
       // const wikiDinosaursFiltered = filteredData(wikiDinosaurs);
       // const allDinosaursData = this.mergeData(dinosaursSelected, wikiDinosaursFiltered);
@@ -79,9 +80,35 @@ function getAddress(object) {
   return newArray;
 }
 
-function getImagesUrl() {
+function getImagesUrl(objects) {
+  const newArray = [];
+  objects.forEach((object) => {
 
+    const url = object.query.pages["-1"].imageinfo[0].url;
+    if (object.query === undefined) {
+      newArray.push('No image avaliable')
+    }
+    else {
+      newArray.push(url)
+    }
+  })
+  return newArray;
 }
+
+function getExtraData(object) {
+  const newArray = [];
+  for (i = 0; i < object.length; i++) {
+    const pageNumber = Object.keys(object[i].query.pages);
+    newArray.push(object[i].query.pages[pageNumber].extract);
+  };
+  return newArray;
+}
+
+Wikipedia.prototype.mergeImages = function (images) {
+  this.dinosaursSelected.forEach((dinosaur, index) => {
+    dinosaur.image = images[index];
+  })
+};
 // function filteredData(wikiDinosaurs) {
 //   const newArray = [];
 //   for (i = 0; i < wikiDinosaurs.length; i++) {
@@ -96,15 +123,12 @@ function getImagesUrl() {
 //   return newArray;
 // };
 //
-// Wikipedia.prototype.mergeData = function (dinosaursSelected, extraData) {
-//   return dinosaursSelected.reduce((merged, dinosaur, index) => {
-//     dinosaur.description = extraData[index * 2];
-//     dinosaur.image = extraData[(index * 2) + 1]
-//     merged.push(dinosaur);
-//     return merged;
-//   }, [])
-//
-// };
+Wikipedia.prototype.mergeData = function (extraData) {
+  console.log(extraData[0]);
+  this.dinosaursSelected.forEach((dinosaur, index) => {
+    dinosaur.description = extraData[index];
+  })
+};
 
 
 module.exports = Wikipedia;
