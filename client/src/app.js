@@ -37,8 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriodContainer = document.querySelector('#time-period-display-container');
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
-
-  const map = new Map();
-  map.bindEvents();
-
 })
