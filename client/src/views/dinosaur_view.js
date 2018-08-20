@@ -16,10 +16,19 @@ DinosaurView.prototype.bindEvents = function () {
 
 DinosaurView.prototype.render = function (dinosaur) {
   this.element.innerHTML = '';
+  this.preRender(dinosaur, this.element);
+  PubSub.publish('DinosaurView:MapContainerReady', dinosaur);
+};
+
+DinosaurView.prototype.preRender = function (dinosaur, element) {
   const lightbox = document.createElement('div')
   lightbox.classList = 'dinosaur-lightbox'
+<<<<<<< HEAD
   lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
   this.element.appendChild(lightbox)
+=======
+  element.appendChild(lightbox)
+>>>>>>> develop
 
   const dinosaurDiv = document.createElement('article');
   dinosaurDiv.id = "dinosaur-view";
@@ -33,10 +42,10 @@ DinosaurView.prototype.render = function (dinosaur) {
   const factFile = this.createFactFile(dinosaur.facts);
   dinosaurDiv.appendChild(factFile);
 
-  const mapContainer = this.createMapElement();
+  const mapContainer = this.createMapElement(dinosaur);
   dinosaurDiv.appendChild(mapContainer);
 
-  this.element.appendChild(dinosaurDiv);
+  element.appendChild(dinosaurDiv);
 };
 
 DinosaurView.prototype.removeDinosaurViewOnClick = function () {
@@ -59,8 +68,8 @@ DinosaurView.prototype.createImage = function (image) {
   const container = document.createElement('section');
   container.id = 'dinosaur-image-container';
   const dinosaurImage = document.createElement('img');
-dinosaurImage.setAttribute('src', `${image}`);
-dinosaurImage.id = 'dinosaur-image';
+  dinosaurImage.setAttribute('src', `${image}`);
+  dinosaurImage.id = 'dinosaur-image';
   container.appendChild(dinosaurImage);
   return container;
 };

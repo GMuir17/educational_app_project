@@ -1,4 +1,4 @@
-const PubSub = require('./pub_sub.js');
+const PubSub = require('../helpers/pub_sub.js');
 
 const HeroImages = function (element) {
   this.element = element;
@@ -28,12 +28,11 @@ const HeroImages = function (element) {
 
 HeroImages.prototype.showRandomImage = function () {
   const selectedIndex = this.selectRandom();
-  console.log(selectedIndex);
   this.render(this.images[selectedIndex]);
 };
 
 HeroImages.prototype.selectRandom = function () {
-  const index = Math.round(Math.random() * 19);
+  const index = Math.round(Math.random() * 18);
   return index
 };
 
