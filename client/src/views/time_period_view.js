@@ -21,19 +21,29 @@ TimePeriodView.prototype.bindEvents = function () {
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
   });
-  this.container.addEventListener('click', (evt) => {
-    this.createDinosaurViewOnClick(evt);
-
-    this.container.addEventListener('click', () => {
-      PubSub.publish('DinosaurPreviewView:exit-click');
-    });
-    // remove event listener
-  });
+  console.log("CONTAINER1", this.container);
+  this.container.addEventListener('click', createDinosaurViewOnClick);
+  this.container.addEventListener('click', removeDinosaurViewOnClick);
 };
 
-TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
+createDinosaurViewOnClick = function (evt) {
   const selectedDino = evt.target.value;
+  console.log("CONTAINER2", this.container);
   PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
+  this.container.removeEventListener('click', createDinosaurViewOnClick);
+};
+
+// TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
+//   const selectedDino = evt.target.value;
+//   console.log("DINO", evt.target);
+//   console.log("CONTAINER2", this.container);
+//   PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
+//   // this.container.removeEventListener('click', removeDinosaurViewOnClick);
+// };
+
+removeDinosaurViewOnClick = function () {
+  PubSub.publish('DinosaurPreviewView:exit-click');
+  // this.container.removeEventListener('click', removeDinosaurViewOnClick);
 };
 
 TimePeriodView.prototype.render = function (dinosaurs) {
