@@ -9,6 +9,11 @@ const TimePeriodView = function (container) {
 
 TimePeriodView.prototype.bindEvents = function () {
   // TODO: make sure this channel matches with the wiki view
+  PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
+    const periodDescription = evt.detail;
+    this.renderDescription(periodDescription);
+  })
+
   PubSub.subscribe('FakeData:a-test', (evt) => {
     this.container.innerHTML = '';
 
@@ -22,7 +27,7 @@ TimePeriodView.prototype.bindEvents = function () {
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
   });
-  
+
   this.container.addEventListener('click', (evt) => {
     const selectedDino = evt.target.value;
     PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
@@ -56,14 +61,14 @@ TimePeriodView.prototype.bindEvents = function () {
     const listItem = document.createElement('ul');
     listItem.textContent = "All Dinos";
     summaryList.appendChild(listItem);
-    // TODO: eventually pass this the dinosaurs.period
-    this.renderDescription(dinosaurs)
+    // TODO: Ask jared about this tomorrow
+    this.renderDescription(null);
   };
 
   TimePeriodView.prototype.renderDescription = function (periodDescription) {
     const descriptionParagraph = document.createElement('p');
     descriptionParagraph.classList.add("period-summary");
-    descriptionParagraph.textContent = "Imagine a T-Rex trying to type quickly";
+    descriptionParagraph.textContent = periodDescription;
     this.mainContainer.appendChild(descriptionParagraph);
   };
 
