@@ -14,21 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
-  timelineView.bindingEvents();
+  timelineView.bindEvents();
 
   const dietNav = document.querySelector('nav#families');
   const dietView = new DietView(dietNav);
-  dietView.bindingEvents();
+  dietView.bindEvents();
 
   const diet = new Diet();
-  diet.bindingEvents();
+  diet.bindEvents();
 
   const dinosaur = new Dinosaur();
-  dinosaur.bindingEvents();
+  dinosaur.bindEvents();
 
   const timePeriod = new TimePeriod();
   timePeriod.get();
-  timePeriod.bindingEvents();
+  timePeriod.bindEvents();
 
   const dinosaurViewElement = document.querySelector('#dinosaur-view-container')
   const dinosaurView = new DinosaurView(dinosaurViewElement);

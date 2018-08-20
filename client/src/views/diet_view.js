@@ -4,7 +4,7 @@ const DietView = function (tags) {
   this.tags = tags;
 }
 
-DietView.prototype.bindingEvents = function () {
+DietView.prototype.bindEvents = function () {
   PubSub.subscribe('Diet:all-diets-ready', (evt) => {
     const diets = evt.detail;
     this.tags.innerHTML = '';
