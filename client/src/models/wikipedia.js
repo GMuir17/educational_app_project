@@ -46,7 +46,6 @@ function filteredData(wikiDinosaurs) {
   const newArray = [];
   for (i = 0; i < wikiDinosaurs.length; i++) {
     const pageNumber = Object.keys(wikiDinosaurs[i].query.pages);
-    console.log(wikiDinosaurs[i].query.pages[pageNumber]);
     if (i % 2  === 0) {
       newArray.push(wikiDinosaurs[i].query.pages[pageNumber].extract)
     }

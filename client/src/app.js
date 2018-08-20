@@ -11,13 +11,10 @@ const TimePeriodView = require('./views/time_period_view.js');
 const TimePeriod = require('./models/time_period.js');
 const Diet = require('./models/diet.js');
 const Dinosaur = require('./models/dinosaur.js');
-const Map = require('./models/map.js')
-<<<<<<< HEAD
-const DinosaurView = require('./views/dinosaur_view.js')
-const TimePeriodView = require('./views/time_period_view.js');
+const Map = require('./models/map.js');
+
 const Wikipedia = require('./models/wikipedia.js');
-=======
->>>>>>> develop
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -54,10 +51,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriodContainer = document.querySelector('#time-period-display-container');
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
-<<<<<<< HEAD
 
-
-})
-=======
 });
->>>>>>> develop
