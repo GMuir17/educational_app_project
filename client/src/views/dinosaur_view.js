@@ -23,12 +23,8 @@ DinosaurView.prototype.render = function (dinosaur) {
 DinosaurView.prototype.preRender = function (dinosaur, element) {
   const lightbox = document.createElement('div')
   lightbox.classList = 'dinosaur-lightbox'
-<<<<<<< HEAD
   lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
   this.element.appendChild(lightbox)
-=======
-  element.appendChild(lightbox)
->>>>>>> develop
 
   const dinosaurDiv = document.createElement('article');
   dinosaurDiv.id = "dinosaur-view";
