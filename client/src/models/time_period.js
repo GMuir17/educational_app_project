@@ -7,7 +7,7 @@ const TimePeriod = function () {
   this.timelapse = null;
 }
 
-TimePeriod.prototype.bindingEvents = function () {
+TimePeriod.prototype.bindEvents = function () {
   PubSub.subscribe('TimelineMenu:selected-period', (evt) => {
     selectedPeriod = this.timelapse[evt.detail];
     const periodReady = {
