@@ -9,7 +9,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 7.5% 10% 1fr 1fr;
-    color: #f4f4f4;
+  color: #f4f4f4;
+  z-index: 2;
 }
 
 #families {
@@ -50,9 +51,21 @@
   grid-area: auto/auto/span 1/span 1;
   box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #25222B;
+  text-align: center;
 }
 
 .preview-image {
-  height: 150px;
-  width: 150px;
+  height: 50%;
+  width: 90%;
+  padding: 5%;
+  object-fit: cover;
+}
+
+.time-period-lightbox {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #00000080;
+  z-index: 1;
 }

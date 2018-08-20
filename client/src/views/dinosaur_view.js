@@ -5,15 +5,20 @@ const DinosaurView = function (element) {
 }
 
 DinosaurView.prototype.bindEvents = function () {
-  PubSub.subscribe ('TimePeriodView:fake-dino', (evt) => {
-    const dinosaur = evt.detail
+  PubSub.subscribe ('DinosaurPreviewView:selected-dinosaur', (evt) => {
+    const dinosaur = evt.detail;
+    console.log(dinosaur);
     this.render(dinosaur);
   });
 }
 
 DinosaurView.prototype.render = function (dinosaur) {
+  this.element.innerHTML = '';
+  const lightbox = document.createElement('div')
+  lightbox.classList = 'dinosaur-lightbox'
+  this.element.appendChild(lightbox)
+
   const dinosaurDiv = document.createElement('article');
-  console.log(dinosaurDiv);
   dinosaurDiv.id = "dinosaur-view";
 
   const infoPara = this.createInfoPara(dinosaur);

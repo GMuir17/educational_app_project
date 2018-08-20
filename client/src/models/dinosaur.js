@@ -7,13 +7,12 @@ const Dinosaur = function () {
 };
 
 
-Dinosaur.prototype.bindingEvents = function () {
+Dinosaur.prototype.bindEvents = function () {
   PubSub.subscribe('Timeline:selected-period-ready', (evt) => {
     const period = evt.detail;
     console.log(evt);
     this.url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=dinosauria^aves&show=coords,ident,ecospace,img&idreso=genus&min_ma=${period.lateDate}&max_ma=${period.earlyDate}`;
     this.periodSelected = period.periodName;
-    console.log('eooooo?:', this.periodSelected);
     this.request = new RequestHelper(this.url);
     this.get();
   })
@@ -28,6 +27,7 @@ Dinosaur.prototype.get = function () {
       // console.log('dinosaurs data:', dinosaursData);
       const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaursDataUnique);
+      PubSub.publish('Dinosaur:dinosaurs-ready', dinosaursDataUnique);
     })
     .catch((err) => {
       console.error(err);
