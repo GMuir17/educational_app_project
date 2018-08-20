@@ -4,6 +4,21 @@
   grid-template-rows: 1fr;
 }
 
+#timeline-background{
+  display: grid;
+  grid-template-columns: 40px 5px 1fr;
+  grid-template-rows: 1fr;
+  height: 102.5%;
+  width: 250px;
+  background-color: #25222B;
+  z-index: -1;
+}
+
+#timeline-background-graphic{
+  grid-area: 1 / 2 / span 1 / span 1;
+  background-color: #f4f4f4;
+}
+
 #timeline-graphic {
   grid-area: 1 / 2 / span 1 / span 1;
   background-color: #f4f4f4;
