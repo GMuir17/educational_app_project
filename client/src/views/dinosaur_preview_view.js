@@ -1,3 +1,5 @@
+const PubSub = require('../helpers/pub_sub.js');
+
 const DinosaurPreviewView = function (container, dinosaur) {
   this.container = container;
   this.dinosaur = dinosaur;
@@ -40,8 +42,9 @@ DinosaurPreviewView.prototype.createImage = function () {
 
 DinosaurPreviewView.prototype.makeEventListener = function () {
   this.container.addEventListener('click', (evt) => {
-    const selectedDinosaur = evt.target.value //maybe
-    PubSub.publish('DinosaurPreviewView:selected-dinosaur');
+    const selectedDinosaur = this.dinosaur;
+    console.log(selectedDinosaur);
+    PubSub.publish('DinosaurPreviewView:selected-dinosaur', selectedDinosaur);
   });
 };
 
