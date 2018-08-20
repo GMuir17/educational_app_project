@@ -5,7 +5,7 @@ const Diet = function () {
 }
 
 Diet.prototype.bindingEvents = function () {
-  PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
+  PubSub.subscribe('Dinosaur:dinosaurs-ready', (evt) => {
     this.dinosaurs = evt.detail;
     const uniqueDiets = getUniqueDiets(this.dinosaurs);
     const uniqueDietsSorted = uniqueDiets.sort();

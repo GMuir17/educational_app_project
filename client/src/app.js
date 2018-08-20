@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindingEvents();
 
-  const dietNav = document.querySelector('nav#families');
-  const dietView = new DietView(dietNav);
-  dietView.bindingEvents();
+  // const dietNav = document.querySelector('nav#families');
+  // const dietView = new DietView(dietNav);
+  // dietView.bindingEvents();
 
   const diet = new Diet();
   diet.bindingEvents();
