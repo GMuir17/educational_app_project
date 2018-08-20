@@ -28,6 +28,7 @@ Dinosaur.prototype.get = function () {
       // console.log('dinosaurs data:', dinosaursData);
       const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaursDataUnique);
+      PubSub.publish('Dinosaur:dinosaurs-ready', dinosaursDataUnique);
     })
     .catch((err) => {
       console.error(err);

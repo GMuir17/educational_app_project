@@ -12,7 +12,6 @@ DietView.prototype.bindEvents = function () {
   })
 };
 
-
 DietView.prototype.renderTags = function (diets) {
   const tagsList = document.createElement('ul');
     const all = document.createElement('li');
