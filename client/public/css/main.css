@@ -24,6 +24,10 @@ h3 {
   font-family: 'Julius Sans One', sans-serif;
 }
 
+h4 {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
 
 #timeline-container{
   grid-area: 1 / 1 / auto / auto;
