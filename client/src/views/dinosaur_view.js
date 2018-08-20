@@ -18,6 +18,7 @@ DinosaurView.prototype.render = function (dinosaur) {
   this.element.innerHTML = '';
   const lightbox = document.createElement('div')
   lightbox.classList = 'dinosaur-lightbox'
+  lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
   this.element.appendChild(lightbox)
 
   const dinosaurDiv = document.createElement('article');
@@ -36,6 +37,11 @@ DinosaurView.prototype.render = function (dinosaur) {
   dinosaurDiv.appendChild(mapContainer);
 
   this.element.appendChild(dinosaurDiv);
+};
+
+DinosaurView.prototype.removeDinosaurViewOnClick = function () {
+  PubSub.publish('DinosaurPreviewView:exit-click');
+  // this.container.removeEventListener('click', this.removeDinosaurViewOnClick);
 };
 
 DinosaurView.prototype.createInfoPara = function (dinosaur) {

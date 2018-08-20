@@ -5,8 +5,8 @@ const DietView = require('./diet_view.js');
 const TimePeriodView = function (container) {
   this.container = container;
   this.mainContainer = null;
-  this.createDinosaurViewOnClick = this.createDinosaurViewOnClick.bind(this);
-  this.removeDinosaurViewOnClick = this.removeDinosaurViewOnClick.bind(this);
+  // this.createDinosaurViewOnClick = this.createDinosaurViewOnClick.bind(this);
+  // this.removeDinosaurViewOnClick = this.removeDinosaurViewOnClick.bind(this);
 };
 
 TimePeriodView.prototype.bindEvents = function () {
@@ -16,10 +16,12 @@ TimePeriodView.prototype.bindEvents = function () {
     const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
     this.container.appendChild(lightbox)
-    lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
+    // lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
 
 
     this.mainContainer = this.createMain();
+    // TODO:
+    // this.mainContainer.addEventListener('click', this.removeDinosaurViewOnClick);
     this.container.appendChild(this.mainContainer);
 
     const dinosaurs = evt.detail;
@@ -30,13 +32,13 @@ TimePeriodView.prototype.bindEvents = function () {
 TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
   const selectedDino = evt.target.value;
   PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
-  this.container.removeEventListener('click', this.createDinosaurViewOnClick);
+  // this.container.removeEventListener('click', this.createDinosaurViewOnClick);
 };
 
-TimePeriodView.prototype.removeDinosaurViewOnClick = function () {
-  PubSub.publish('DinosaurPreviewView:exit-click');
-  this.container.removeEventListener('click', this.removeDinosaurViewOnClick);
-};
+// TimePeriodView.prototype.removeDinosaurViewOnClick = function () {
+//   PubSub.publish('DinosaurPreviewView:exit-click');
+//   this.container.removeEventListener('click', this.removeDinosaurViewOnClick);
+// };
 
 TimePeriodView.prototype.render = function (dinosaurs) {
   this.renderContainer(dinosaurs)
