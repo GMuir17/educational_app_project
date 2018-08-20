@@ -22,8 +22,12 @@ TimePeriodView.prototype.bindEvents = function () {
   this.container.addEventListener('click', (evt) => {
     const selectedDino = evt.target.value;
     PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
-    })
-  };
+    this.container.addEventListener('click', () => {
+      PubSub.publish('DinosaurPreviewView:exit-click');
+    });
+  });
+
+};
 
   TimePeriodView.prototype.render = function (dinosaurs) {
     this.renderContainer(dinosaurs)
