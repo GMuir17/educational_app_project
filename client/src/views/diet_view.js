@@ -25,7 +25,7 @@ DietView.prototype.renderTags = function (diets) {
   diets.forEach((diet, index) => {
     if(diet === 'carnivore' || diet === 'herbivore' || diet === 'omnivore') {
       const item = document.createElement('li');
-      item.textContent = diet;
+      item.textContent = this.capitaliseFirstLetter(diet);
       item.value = index;
       tagsList.appendChild(item);
 
@@ -35,6 +35,10 @@ DietView.prototype.renderTags = function (diets) {
     }
   })
   this.tags.appendChild(tagsList);
+};
+
+DietView.prototype.capitaliseFirstLetter = function (word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
 module.exports = DietView;
