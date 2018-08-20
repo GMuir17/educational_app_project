@@ -54,6 +54,10 @@
   text-align: center;
 }
 
+.dinosaur-preview:hover{
+  background-color: #4A4456;
+}
+
 .preview-image {
   height: 50%;
   width: 90%;
