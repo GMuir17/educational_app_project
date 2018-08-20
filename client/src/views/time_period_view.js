@@ -18,15 +18,12 @@ TimePeriodView.prototype.bindEvents = function () {
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
   });
-<<<<<<< HEAD
+
   this.container.addEventListener('click', (evt) => {
     const selectedDino = evt.target.value;
     PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
     })
   };
-=======
-};
->>>>>>> develop
 
   TimePeriodView.prototype.render = function (dinosaurs) {
     this.renderContainer(dinosaurs)
@@ -47,15 +44,10 @@ TimePeriodView.prototype.bindEvents = function () {
     nav.id = "families";
     this.mainContainer.appendChild(nav);
 
-<<<<<<< HEAD
-    const summaryList = document.createElement('li');
-    nav.appendChild(summaryList);
-=======
   this.renderDietTabs(nav);
 
   const summaryList = document.createElement('li');
   nav.appendChild(summaryList);
->>>>>>> develop
 
     const listItem = document.createElement('ul');
     listItem.textContent = "All Dinos";
@@ -77,13 +69,9 @@ TimePeriodView.prototype.bindEvents = function () {
     return timePeriodContainer;
   };
 
-<<<<<<< HEAD
-  module.exports = TimePeriodView;
-=======
 TimePeriodView.prototype.renderDietTabs = function (element) {
   const dietView = new DietView(element);
   dietView.bindEvents();
 };
 
 module.exports = TimePeriodView;
->>>>>>> develop

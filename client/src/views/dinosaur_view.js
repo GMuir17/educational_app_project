@@ -13,12 +13,8 @@ DinosaurView.prototype.bindEvents = function () {
 }
 
 DinosaurView.prototype.render = function (dinosaur) {
-<<<<<<< HEAD
   this.element.innerHTML = ''
-=======
-  this.element.innerHTML = '';
 
->>>>>>> develop
   const dinosaurDiv = document.createElement('article');
   dinosaurDiv.id = "dinosaur-view";
 
