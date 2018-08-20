@@ -41,7 +41,6 @@ DinosaurView.prototype.render = function (dinosaur) {
 
 DinosaurView.prototype.removeDinosaurViewOnClick = function () {
   PubSub.publish('DinosaurPreviewView:exit-click');
-  // this.container.removeEventListener('click', this.removeDinosaurViewOnClick);
 };
 
 DinosaurView.prototype.createInfoPara = function (dinosaur) {

@@ -14,10 +14,6 @@ DinosaurPreviewView.prototype.render = function () {
 
   const previewDescription = this.createDescription();
   this.container.appendChild(previewDescription);
-
-  // PubSub.subscribe('TimePeriodView:exit-click', () => {
-  //   this.deleteSelf();
-  // });
 };
 
 DinosaurPreviewView.prototype.createTitle = function () {

@@ -36,7 +36,6 @@ TimePeriodView.prototype.removeTimePeriodViewOnClick = function () {
 TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
   const selectedDino = evt.target.value;
   PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
-  // this.container.removeEventListener('click', this.createDinosaurViewOnClick);
 };
 
 TimePeriodView.prototype.render = function (dinosaurs) {
