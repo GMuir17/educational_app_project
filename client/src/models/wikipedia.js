@@ -9,7 +9,7 @@ const Wikipedia = function () {
 };
 
 
-Wikipedia.prototype.bindingEvents = function () {
+Wikipedia.prototype.bindEvents = function () {
   PubSub.subscribe('Timeline:selected-period-ready', (evt) => {
     const period = evt.detail.periodName;
     const periodUrl =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${period}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`

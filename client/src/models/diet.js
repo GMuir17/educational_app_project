@@ -5,7 +5,7 @@ const Diet = function () {
 }
 
 Diet.prototype.bindEvents = function () {
-  PubSub.subscribe('Dinosaur:dinosaurs-ready', (evt) => {
+  PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
     this.dinosaurs = evt.detail;
     const uniqueDiets = getUniqueDiets(this.dinosaurs);
     const uniqueDietsSorted = uniqueDiets.sort();
@@ -19,7 +19,6 @@ Diet.prototype.bindEvents = function () {
       else {
         const selectedDiet = uniqueDietsSorted[selectedIndex];
         const filteredDinosaurs = this.getDinosaursByDiet(selectedDiet);
-        // console.log(filteredDinosaurs);
         PubSub.publish('Dinosaur:all-dinosaurs-ready', filteredDinosaurs);
         console.log(filteredDinosaurs);
       }

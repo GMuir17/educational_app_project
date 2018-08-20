@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindEvents();
 
+  const wikipedia = new Wikipedia();
+  wikipedia.bindEvents();
+
   const diet = new Diet();
   diet.bindEvents();
 
