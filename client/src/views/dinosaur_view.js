@@ -5,7 +5,7 @@ const DinosaurView = function (element) {
 }
 
 DinosaurView.prototype.bindEvents = function () {
-  PubSub.subscribe ('TimelineMenu:fake-dino', (evt) => {
+  PubSub.subscribe ('TimePeriodView:fake-dino', (evt) => {
     this.render(evt.detail);
   });
 }
