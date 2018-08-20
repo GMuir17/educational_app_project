@@ -7,7 +7,6 @@ const DietView = function (tags) {
 DietView.prototype.bindEvents = function () {
   PubSub.subscribe('Diet:all-diets-ready', (evt) => {
     const diets = evt.detail;
-    console.log("TAGS", this.tags);
     this.tags.innerHTML = '';
     this.renderTags(diets);
   })
