@@ -43,6 +43,7 @@
 
 .period-summary {
   padding-left: 5vh;
+  padding-right: 5vh;
   grid-area: 2 / 1 / span 1 / span 4
 }
 
