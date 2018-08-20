@@ -31,7 +31,7 @@ Wikipedia.prototype.bindingEvents = function () {
       // console.log(dinosaursData);
       const wikiDinosaursFiltered = filteredData(wikiDinosaurs);
       const allDinosaursData = this.mergeData(dinosaursSelected, wikiDinosaursFiltered);
-      console.log('what is this?:', allDinosaursData);
+      PubSub.publish('Wikipedia:All-dinosaurs-ready', allDinosaursData);
     })
     .catch((err) => {
       console.error(err);
