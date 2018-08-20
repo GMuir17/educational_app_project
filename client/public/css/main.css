@@ -14,6 +14,7 @@ body {
 
 h1 {
   font-family: 'Julius Sans One', sans-serif;
+  text-align: center;
 }
 
 h2 {
@@ -52,9 +53,14 @@ h4 {
 footer {
   text-align: right;
 }
-.logo {
+#lizard-logo {
   height: 20px;
   display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  color: #f4f4f4;
 }
 
 #welcome{

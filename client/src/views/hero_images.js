@@ -1,4 +1,4 @@
-const PubSub = require('./pub_sub.js');
+const PubSub = require('../helpers/pub_sub.js');
 
 const HeroImages = function (element) {
   this.element = element;
