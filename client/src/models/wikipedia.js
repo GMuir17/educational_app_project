@@ -24,12 +24,30 @@ Wikipedia.prototype.bindingEvents = function () {
     .then((dinosaurData) => {
       this.wikiDinosaurs = dinosaurData;
       console.log(this.wikiDinosaurs);
+      this.url2 =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
+      const request2 = new RequestHelper(this.url2);
+      return request2.get();
       // const mergedDinosaursData = this.mergeData();
+    })
+    .then((dinosaursImages) => {
+      this.wikiImageId = dinosaursImages;
+      console.log(this.wikiImageId);
     })
     .catch((err) => {
       console.error(err);
-
     })
+
+
+
+    // Wikipedia.prototype.getImageId = function() {
+     //  this.url = 'https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*'
+     //  const request = new RequestHelper(this.url)
+     //  request.get();
+     // };
+
+//      Wikipedia.prototype.getImageUrl = function(imageId) {
+//   const request = new
+// };
 
     console.log(`wkik`, this.wikiDinosaurs);
     console.log(`dinosaursSelected`, dinosaursSelected);
