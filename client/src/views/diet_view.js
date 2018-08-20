@@ -4,14 +4,13 @@ const DietView = function (tags) {
   this.tags = tags;
 }
 
-DietView.prototype.bindingEvents = function () {
+DietView.prototype.bindEvents = function () {
   PubSub.subscribe('Diet:all-diets-ready', (evt) => {
     const diets = evt.detail;
     this.tags.innerHTML = '';
     this.renderTags(diets);
   })
 };
-
 
 DietView.prototype.renderTags = function (diets) {
   const tagsList = document.createElement('ul');
@@ -26,7 +25,7 @@ DietView.prototype.renderTags = function (diets) {
   diets.forEach((diet, index) => {
     if(diet === 'carnivore' || diet === 'herbivore' || diet === 'omnivore') {
       const item = document.createElement('li');
-      item.textContent = diet;
+      item.textContent = this.capitaliseFirstLetter(diet);
       item.value = index;
       tagsList.appendChild(item);
 
@@ -36,6 +35,10 @@ DietView.prototype.renderTags = function (diets) {
     }
   })
   this.tags.appendChild(tagsList);
+};
+
+DietView.prototype.capitaliseFirstLetter = function (word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
 module.exports = DietView;

@@ -4,8 +4,8 @@ const Diet = function () {
   this.dinosaurs = null;
 }
 
-Diet.prototype.bindingEvents = function () {
-  PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
+Diet.prototype.bindEvents = function () {
+  PubSub.subscribe('Dinosaur:dinosaurs-ready', (evt) => {
     this.dinosaurs = evt.detail;
     const uniqueDiets = getUniqueDiets(this.dinosaurs);
     const uniqueDietsSorted = uniqueDiets.sort();
@@ -19,6 +19,7 @@ Diet.prototype.bindingEvents = function () {
       else {
         const selectedDiet = uniqueDietsSorted[selectedIndex];
         const filteredDinosaurs = this.getDinosaursByDiet(selectedDiet);
+        // console.log(filteredDinosaurs);
         PubSub.publish('Dinosaur:all-dinosaurs-ready', filteredDinosaurs);
         console.log(filteredDinosaurs);
       }
@@ -37,7 +38,6 @@ function getUniqueDiets(dinosaurs) {
     }
     return uniqueDiets
   }, []);
-  console.log(filteredDiets);
   return filteredDiets;
 }
 
