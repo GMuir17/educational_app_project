@@ -74,7 +74,6 @@ DinosaurView.prototype.createMapElement = function () {
 };
 
 DinosaurView.prototype.deleteSelf = function () {
-  console.log("I'm deleted!");
   this.element.innerHTML = '';
 };
 

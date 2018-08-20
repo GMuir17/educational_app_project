@@ -16,6 +16,8 @@ TimePeriodView.prototype.bindEvents = function () {
     const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
     this.container.appendChild(lightbox)
+    lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
+
 
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
@@ -23,20 +25,17 @@ TimePeriodView.prototype.bindEvents = function () {
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
   });
-
-  this.container.addEventListener('click', this.createDinosaurViewOnClick);
-  this.container.addEventListener('click', this.removeDinosaurViewOnClick);
 };
 
 TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
   const selectedDino = evt.target.value;
   PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
-  this.container.removeEventListener('click', this.removeDinosaurViewOnClick);
+  this.container.removeEventListener('click', this.createDinosaurViewOnClick);
 };
 
 TimePeriodView.prototype.removeDinosaurViewOnClick = function () {
   PubSub.publish('DinosaurPreviewView:exit-click');
-  this.container.removeEventListener('click', this.createDinosaurViewOnClick);
+  this.container.removeEventListener('click', this.removeDinosaurViewOnClick);
 };
 
 TimePeriodView.prototype.render = function (dinosaurs) {
@@ -50,26 +49,7 @@ TimePeriodView.prototype.render = function (dinosaurs) {
     dinosaurPreviewView.makeEventListener();
     dinosaurPreviewView.render()
     this.mainContainer.appendChild(article);
-  });
-};
-
-TimePeriodView.prototype.renderContainer = function (dinosaurs) {
-  const nav = document.createElement('nav');
-  nav.id = "families";
-  this.mainContainer.appendChild(nav);
-};
-
-TimePeriodView.prototype.render = function (dinosaurs) {
-  this.renderContainer(dinosaurs)
-
-  dinosaurs.forEach((dinosaur) => {
-    // TODO: should I use "article.dinosaur-preview" here?
-    const article = document.createElement('article');
-    article.classList.add("dinosaur-preview");
-    const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
-    dinosaurPreviewView.makeEventListener();
-    dinosaurPreviewView.render()
-    this.mainContainer.appendChild(article);
+    article.addEventListener('click', this.createDinosaurViewOnClick);
   });
 };
 
