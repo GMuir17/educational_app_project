@@ -13,7 +13,6 @@ Dinosaur.prototype.bindEvents = function () {
     console.log(evt);
     this.url = `https://paleobiodb.org/data1.2/occs/list.json?base_name=dinosauria^aves&show=coords,ident,ecospace,img&idreso=genus&min_ma=${period.lateDate}&max_ma=${period.earlyDate}`;
     this.periodSelected = period.periodName;
-    console.log('eooooo?:', this.periodSelected);
     this.request = new RequestHelper(this.url);
     this.get();
   })

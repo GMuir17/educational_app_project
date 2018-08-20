@@ -46,8 +46,10 @@ TimePeriodView.prototype.bindEvents = function () {
     nav.id = "families";
     this.mainContainer.appendChild(nav);
 
-    const summaryList = document.createElement('li');
-    nav.appendChild(summaryList);
+  this.renderDietTabs(nav);
+
+  const summaryList = document.createElement('li');
+  nav.appendChild(summaryList);
 
     const listItem = document.createElement('ul');
     listItem.textContent = "All Dinos";
