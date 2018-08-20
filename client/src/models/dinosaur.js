@@ -7,7 +7,7 @@ const Dinosaur = function () {
 };
 
 
-Dinosaur.prototype.bindingEvents = function () {
+Dinosaur.prototype.bindEvents = function () {
   PubSub.subscribe('Timeline:selected-period-ready', (evt) => {
     const period = evt.detail;
     console.log(evt);
