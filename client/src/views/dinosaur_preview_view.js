@@ -8,14 +8,16 @@ const DinosaurPreviewView = function (container, dinosaur) {
 DinosaurPreviewView.prototype.render = function () {
   const previewImage = this.createImage();
   this.container.appendChild(previewImage);
-  
+
   const previewTitle = this.createTitle();
   this.container.appendChild(previewTitle);
 
   const previewDescription = this.createDescription();
   this.container.appendChild(previewDescription);
 
-
+  // PubSub.subscribe('TimePeriodView:exit-click', () => {
+  //   this.deleteSelf();
+  // });
 };
 
 DinosaurPreviewView.prototype.createTitle = function () {
@@ -46,6 +48,11 @@ DinosaurPreviewView.prototype.makeEventListener = function () {
     const selectedDinosaur = this.dinosaur;
     PubSub.publish('DinosaurPreviewView:selected-dinosaur', selectedDinosaur);
   });
+};
+
+DinosaurPreviewView.prototype.deleteSelf = function () {
+  console.log("I'm deleted");
+  this.container.innerHTML = '';
 };
 
 
