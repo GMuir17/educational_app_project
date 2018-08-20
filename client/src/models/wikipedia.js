@@ -2,9 +2,9 @@ const PubSub = require('../helpers/pub_sub.js');
 const RequestHelper = require('../helpers/request.js');
 
 const Wikipedia = function () {
-  this.url = '';
   this.dinosaurs = null;
   this.wikiDinosaurs = null;
+  this.wikiImageId = null;
 };
 
 
@@ -15,23 +15,21 @@ Wikipedia.prototype.bindingEvents = function () {
     const dinosaursSelected = this.dinosaurs.slice(0, 8);
 
 
-    Promise.all(dinosaursSelected.map(object => {
+    Promise.all(dinosaursSelected.reduce((promises, object) => {
       console.log(object.name);
-      this.url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
-      const request = new RequestHelper(this.url);
-      return request.get();
-    }))
+      const url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
+      const request = new RequestHelper(url);
+      promises.push(request.get());
+
+      const imgUrl =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
+      const requestImg = new RequestHelper(imgUrl);
+      promises.push(requestImg.get());
+
+      return promises;
+    }, []))
     .then((dinosaurData) => {
-      this.wikiDinosaurs = dinosaurData;
-      console.log(this.wikiDinosaurs);
-      this.url2 =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
-      const request2 = new RequestHelper(this.url2);
-      return request2.get();
-      // const mergedDinosaursData = this.mergeData();
-    })
-    .then((dinosaursImages) => {
-      this.wikiImageId = dinosaursImages;
-      console.log(this.wikiImageId);
+      this.wikiDinosaurs = dinosaurData
+      console.log(dinosaurData);
     })
     .catch((err) => {
       console.error(err);
