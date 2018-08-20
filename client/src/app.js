@@ -18,6 +18,7 @@ const Wikipedia = require('./models/wikipedia.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 
+
   const imageContainer = document.querySelector('.hero-image')
   const heroImages = new HeroImages(imageContainer);
   heroImages.showRandomImage();
@@ -26,13 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
   timelineView.bindEvents();
-
-  const dietNav = document.querySelector('nav#families');
-  const dietView = new DietView(dietNav);
-  dietView.bindEvents();
-
-  const wiki = new Wikipedia();
-  wiki.bindingEvents();
 
   const diet = new Diet();
   diet.bindEvents();
@@ -52,4 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
 
+  const map = new Map();
+  map.bindEvents();
 });

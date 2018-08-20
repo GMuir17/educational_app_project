@@ -5,6 +5,8 @@ const DietView = require('./diet_view.js');
 const TimePeriodView = function (container) {
   this.container = container;
   this.mainContainer = null;
+  // this.createDinosaurViewOnClick = this.createDinosaurViewOnClick.bind(this);
+  // this.removeDinosaurViewOnClick = this.removeDinosaurViewOnClick.bind(this);
 };
 
 TimePeriodView.prototype.bindEvents = function () {
@@ -16,10 +18,13 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('FakeData:a-test', (evt) => {
     this.container.innerHTML = '';
-
-  const lightbox = document.createElement('div')
+    const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
     this.container.appendChild(lightbox)
+    lightbox.addEventListener('click', () => {
+      this.container.innerHTML = '';
+    });
+
 
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
@@ -48,11 +53,34 @@ TimePeriodView.prototype.bindEvents = function () {
     });
   };
 
-  TimePeriodView.prototype.renderContainer = function (dinosaurs) {
-    const nav = document.createElement('nav');
-    nav.id = "families";
-    this.mainContainer.appendChild(nav);
+TimePeriodView.prototype.removeTimePeriodViewOnClick = function () {
+  PubSub.publish('TimePeriodView:exit-click');
+};
 
+TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
+  const selectedDino = evt.target.value;
+  PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
+};
+
+TimePeriodView.prototype.render = function (dinosaurs) {
+  this.renderContainer(dinosaurs)
+
+  dinosaurs.forEach((dinosaur) => {
+    // TODO: should I use "article.dinosaur-preview" here?
+    const article = document.createElement('article');
+    article.classList.add("dinosaur-preview");
+    const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
+    dinosaurPreviewView.makeEventListener();
+    dinosaurPreviewView.render()
+    this.mainContainer.appendChild(article);
+    article.addEventListener('click', this.createDinosaurViewOnClick);
+  });
+};
+
+TimePeriodView.prototype.renderContainer = function (dinosaurs) {
+  const nav = document.createElement('nav');
+  nav.id = "families";
+  this.mainContainer.appendChild(nav);
   this.renderDietTabs(nav);
 
   const summaryList = document.createElement('li');
