@@ -13,7 +13,6 @@ DinosaurPreviewView.prototype.render = function () {
   const previewImage = this.createImage();
   this.container.appendChild(previewImage);
 
-  // this.makeEventListener();
 };
 
 DinosaurPreviewView.prototype.createTitle = function () {
@@ -39,12 +38,12 @@ DinosaurPreviewView.prototype.createImage = function () {
   return image;
 };
 
-// DinosaurPreviewView.prototype.makeEventListener = function () {
-//   this.container.addEventListener('click', (evt) => {
-//     const selectedDinosaur = evt.target.value //maybe
-//     PubSub.publish('DinosaurPreviewView:selected-dinosaur');
-//   });
-// };
+DinosaurPreviewView.prototype.makeEventListener = function () {
+  this.container.addEventListener('click', (evt) => {
+    const selectedDinosaur = evt.target.value //maybe
+    PubSub.publish('DinosaurPreviewView:selected-dinosaur');
+  });
+};
 
 
 module.exports = DinosaurPreviewView;
