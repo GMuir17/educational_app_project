@@ -15,7 +15,6 @@ Wikipedia.prototype.bindingEvents = function () {
 
 
     Promise.all(dinosaursSelected.reduce((promises, object) => {
-      console.log(object.name);
       const url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
       const request = new RequestHelper(url);
       promises.push(request.get());

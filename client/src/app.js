@@ -18,6 +18,7 @@ const Wikipedia = require('./models/wikipedia.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 
+
   const imageContainer = document.querySelector('.hero-image')
   const heroImages = new HeroImages(imageContainer);
   heroImages.showRandomImage();
@@ -52,4 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const timePeriodView = new TimePeriodView(timePeriodContainer);
   timePeriodView.bindEvents();
 
+  const map = new Map();
+  map.bindEvents();
 });
