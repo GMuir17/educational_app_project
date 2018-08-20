@@ -15,7 +15,10 @@ DinosaurView.prototype.bindEvents = function () {
 }
 
 DinosaurView.prototype.render = function (dinosaur) {
-  this.element.innerHTML = ''
+  this.element.innerHTML = '';
+  const lightbox = document.createElement('div')
+  lightbox.classList = 'dinosaur-lightbox'
+  this.element.appendChild(lightbox)
 
   const dinosaurDiv = document.createElement('article');
   dinosaurDiv.id = "dinosaur-view";

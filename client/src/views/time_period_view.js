@@ -11,6 +11,9 @@ TimePeriodView.prototype.bindEvents = function () {
   // TODO: make sure this channel matches with the wiki view
   PubSub.subscribe('FakeData:a-test', (evt) => {
     this.container.innerHTML = '';
+  const lightbox = document.createElement('div')
+    lightbox.classList = 'time-period-lightbox'
+    this.container.appendChild(lightbox)
 
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
@@ -18,7 +21,6 @@ TimePeriodView.prototype.bindEvents = function () {
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
   });
-
   this.container.addEventListener('click', (evt) => {
     const selectedDino = evt.target.value;
     PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
