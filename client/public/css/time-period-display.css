@@ -51,11 +51,18 @@
   grid-area: auto/auto/span 1/span 1;
   box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #25222B;
+  text-align: center;
+}
+
+.dinosaur-preview:hover{
+  background-color: #4A4456;
 }
 
 .preview-image {
-  height: 150px;
-  width: 150px;
+  height: 50%;
+  width: 90%;
+  padding: 5%;
+  object-fit: cover;
 }
 
 .time-period-lightbox {

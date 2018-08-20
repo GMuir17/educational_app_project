@@ -21,6 +21,7 @@ TimePeriodView.prototype.bindEvents = function () {
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
   });
+
   console.log("CONTAINER1", this.container);
   this.container.addEventListener('click', createDinosaurViewOnClick);
   this.container.addEventListener('click', removeDinosaurViewOnClick);
@@ -41,10 +42,11 @@ createDinosaurViewOnClick = function (evt) {
 //   // this.container.removeEventListener('click', removeDinosaurViewOnClick);
 // };
 
-removeDinosaurViewOnClick = function () {
-  PubSub.publish('DinosaurPreviewView:exit-click');
-  // this.container.removeEventListener('click', removeDinosaurViewOnClick);
-};
+// this.container.addEventListener('click', (evt) => {
+//   const selectedDino = evt.target.value;
+//   PubSub.publish('TimePeriodView:dinosaur-selected', selectedDino);
+// })
+// };
 
 TimePeriodView.prototype.render = function (dinosaurs) {
   this.renderContainer(dinosaurs)
@@ -64,34 +66,59 @@ TimePeriodView.prototype.renderContainer = function (dinosaurs) {
   const nav = document.createElement('nav');
   nav.id = "families";
   this.mainContainer.appendChild(nav);
-  this.renderDietTabs(nav);
-
-  const summaryList = document.createElement('li');
-  nav.appendChild(summaryList);
-
-  const listItem = document.createElement('ul');
-  listItem.textContent = "All Dinos";
-  summaryList.appendChild(listItem);
-  // TODO: eventually pass this the dinosaurs.period
-  this.renderDescription(dinosaurs)
 };
 
-TimePeriodView.prototype.renderDescription = function (periodDescription) {
-  const descriptionParagraph = document.createElement('p');
-  descriptionParagraph.classList.add("period-summary");
-  descriptionParagraph.textContent = "Imagine a T-Rex trying to type quickly";
-  this.mainContainer.appendChild(descriptionParagraph);
-};
+  removeDinosaurViewOnClick = function () {
+    PubSub.publish('DinosaurPreviewView:exit-click');
+    // this.container.removeEventListener('click', removeDinosaurViewOnClick);
+  };
 
-TimePeriodView.prototype.createMain = function () {
-  const timePeriodContainer = document.createElement('main');
-  timePeriodContainer.id = "time-period-display";
-  return timePeriodContainer;
-};
+  TimePeriodView.prototype.render = function (dinosaurs) {
+    this.renderContainer(dinosaurs)
 
-TimePeriodView.prototype.renderDietTabs = function (element) {
-  const dietView = new DietView(element);
-  dietView.bindEvents();
-};
+    dinosaurs.forEach((dinosaur) => {
+      // TODO: should I use "article.dinosaur-preview" here?
+      const article = document.createElement('article');
+      article.classList.add("dinosaur-preview");
+      const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
+      dinosaurPreviewView.makeEventListener();
+      dinosaurPreviewView.render()
+      this.mainContainer.appendChild(article);
+    });
+  };
 
-module.exports = TimePeriodView;
+  TimePeriodView.prototype.renderContainer = function (dinosaurs) {
+    const nav = document.createElement('nav');
+    nav.id = "families";
+    this.mainContainer.appendChild(nav);
+    this.renderDietTabs(nav);
+
+    const summaryList = document.createElement('li');
+    nav.appendChild(summaryList);
+
+    const listItem = document.createElement('ul');
+    listItem.textContent = "All Dinos";
+    summaryList.appendChild(listItem);
+    // TODO: eventually pass this the dinosaurs.period
+    this.renderDescription(dinosaurs)
+  };
+
+  TimePeriodView.prototype.renderDescription = function (periodDescription) {
+    const descriptionParagraph = document.createElement('p');
+    descriptionParagraph.classList.add("period-summary");
+    descriptionParagraph.textContent = "Imagine a T-Rex trying to type quickly";
+    this.mainContainer.appendChild(descriptionParagraph);
+  };
+
+  TimePeriodView.prototype.createMain = function () {
+    const timePeriodContainer = document.createElement('main');
+    timePeriodContainer.id = "time-period-display";
+    return timePeriodContainer;
+  };
+
+  TimePeriodView.prototype.renderDietTabs = function (element) {
+    const dietView = new DietView(element);
+    dietView.bindEvents();
+  };
+
+  module.exports = TimePeriodView;

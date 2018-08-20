@@ -6,14 +6,15 @@ const DinosaurPreviewView = function (container, dinosaur) {
 };
 
 DinosaurPreviewView.prototype.render = function () {
+  const previewImage = this.createImage();
+  this.container.appendChild(previewImage);
+  
   const previewTitle = this.createTitle();
   this.container.appendChild(previewTitle);
 
   const previewDescription = this.createDescription();
   this.container.appendChild(previewDescription);
 
-  const previewImage = this.createImage();
-  this.container.appendChild(previewImage);
 
 };
 
