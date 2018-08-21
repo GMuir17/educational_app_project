@@ -67,7 +67,8 @@ TimePeriodView.prototype.renderDescription = function (periodDescription) {
 
   const descriptionParagraph = document.createElement('p');
   descriptionParagraph.classList.add("period-summary");
-  descriptionParagraph.textContent = periodDescription;
+  const periodSentences = periodDescription.split(". ")
+  descriptionParagraph.textContent = `${periodSentences[0]}. ${periodSentences[1]}. ${periodSentences[2]}.`;
   this.mainContainer.appendChild(descriptionParagraph);
 };
 
