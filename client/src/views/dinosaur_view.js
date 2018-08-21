@@ -24,7 +24,9 @@ DinosaurView.prototype.preRender = function (dinosaur, element) {
   const lightbox = document.createElement('div')
   lightbox.classList = 'dinosaur-lightbox'
   lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
-  this.element.appendChild(lightbox)
+  this.element.appendChild(lightbox);
+  const otherLightbox = document.querySelector('.time-period-lightbox');
+  otherLightbox.classList = 'disabled-lightbox';
 
   const dinosaurDiv = document.createElement('article');
   dinosaurDiv.id = "dinosaur-view";
@@ -32,7 +34,7 @@ DinosaurView.prototype.preRender = function (dinosaur, element) {
   const infoPara = this.createInfoPara(dinosaur);
   dinosaurDiv.appendChild(infoPara);
 
-  const dinosaurImage = this.createImage(dinosaur.imageURL);
+  const dinosaurImage = this.createImage(dinosaur);
   dinosaurDiv.appendChild(dinosaurImage)
 
   const factFile = this.createFactFile(dinosaur);
@@ -61,13 +63,14 @@ DinosaurView.prototype.createInfoPara = function (dinosaur) {
   return section;
 };
 
-DinosaurView.prototype.createImage = function (image) {
+DinosaurView.prototype.createImage = function (dinosaur) {
   const container = document.createElement('section');
   container.id = 'dinosaur-image-container';
-  const dinosaurImage = document.createElement('img');
-  dinosaurImage.setAttribute('src', `${image}`);
-  dinosaurImage.id = 'dinosaur-image';
-  container.appendChild(dinosaurImage);
+  const image = document.createElement('img');
+  image.id = 'dinosaur-image';
+  image.src = dinosaur.image;
+  image.alt = dinosaur.name;
+  container.appendChild(image);
   return container;
 };
 
@@ -89,6 +92,8 @@ DinosaurView.prototype.createMapElement = function () {
 
 DinosaurView.prototype.deleteSelf = function () {
   this.element.innerHTML = '';
+  const otherLightbox = document.querySelector('.disabled-lightbox');
+  otherLightbox.classList = 'time-period-lightbox';
 };
 
 module.exports = DinosaurView;
