@@ -20,17 +20,21 @@ DietView.prototype.bindEvents = function () {
   this.diets.forEach((diet, index) => {
     if(diet === 'carnivore' || diet === 'herbivore' || diet === 'omnivore') {
       const item = document.createElement('li');
-      item.textContent = diet;
+      item.textContent = this.capitalizeFirstLetter(diet);
       item.value = index;
       tagsList.appendChild(item);
 
       item.addEventListener('click', (evt) => {
+        console.log('this.tags', evt.detail);
         PubSub.publish('DietView:selected-diet', item.value);
       })
     }
   })
   this.tags.appendChild(tagsList);
-  console.log('this.tags', this.tags);
+};
+
+DietView.prototype.capitalizeFirstLetter = function (word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
 module.exports = DietView;
