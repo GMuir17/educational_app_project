@@ -14,7 +14,6 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
     const periodDescription = evt.detail;
-    console.log("break");
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
 
@@ -30,12 +29,10 @@ TimePeriodView.prototype.bindEvents = function () {
   PubSub.subscribe('Wikipedia:all-dinosaurs-ready', (evt) => {
     const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
-    console.log('lightbox happens');
     this.container.appendChild(lightbox)
     lightbox.addEventListener('click', () => {
       this.container.innerHTML = '';
     });
-    console.log('creating dinosaurs?');
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
 

@@ -14,16 +14,31 @@ Map.prototype.bindEvents = function () {
 }
 
 Map.prototype.createMap = function (dinosaur) {
-  const map = L.map('map').setView(dinosaur.coords[0], 2);
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    maxZoom: 18,
-    id: 'mapbox.streets',
-    accessToken: tilesetKey
-  }).addTo(map);
-  const icon = this.createIcon(dinosaur.imageId)
-  dinosaur.coords.forEach((coordinates, index) => {
-    L.marker(coordinates, icon).addTo(map)
-  })
+  if (dinosaur.coords.length === 2) {
+    console.log("FAKE MAP");
+    const map = L.map('map').setView([55.9533, 3.1833], 4);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      maxZoom: 18,
+      id: 'mapbox.streets',
+      accessToken: tilesetKey
+    }).addTo(map);
+    const icon = this.createIcon(dinosaur.imageId)
+    dinosaur.coords.forEach((coordinates, index) => {
+      L.marker(coordinates, icon).addTo(map)
+    })
+  }
+  else {
+    const map = L.map('map').setView(dinosaur.coords[0], 2);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      maxZoom: 18,
+      id: 'mapbox.streets',
+      accessToken: tilesetKey
+    }).addTo(map);
+    const icon = this.createIcon(dinosaur.imageId)
+    dinosaur.coords.forEach((coordinates, index) => {
+      L.marker(coordinates, icon).addTo(map)
+    })
+  }
 };
 
 Map.prototype.createIcon = function (imageID) {
