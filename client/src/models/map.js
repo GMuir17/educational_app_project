@@ -9,14 +9,12 @@ Map.prototype.bindEvents = function () {
   // TODO: change from using all dinosaurs to selected dinosaur
  PubSub.subscribe('DinosaurView:MapContainerReady', (evt) => {
    const dinosaur = evt.detail;
-   console.log(dinosaur);
    this.createMap(dinosaur)
  })
 }
 
 Map.prototype.createMap = function (dinosaur) {
   const map = L.map('map').setView(dinosaur.coords[0], 2);
-  console.log('map', map);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     maxZoom: 18,
     id: 'mapbox.streets',

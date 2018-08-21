@@ -22,10 +22,10 @@ Dinosaur.prototype.bindEvents = function () {
 Dinosaur.prototype.get = function () {
   this.request.get()
     .then((dinosaurs) => {
-      // console.log(dinosaurs);
+
       const dinosaursData = this.filterDinosaurData(dinosaurs.records);
-      console.log(dinosaursData);
-      // console.log('dinosaurs data:', dinosaursData);
+
+
       const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaursDataUnique);
       PubSub.publish('Dinosaur:dinosaurs-ready', dinosaursDataUnique);
@@ -84,7 +84,7 @@ function filterByGenusName(dinosaurs) {
     }
     return uniqueDinosaurs;
   }, [])
-  // console.log('filteredDinosaurs:', filteredDinosaurs);
+
   return filteredDinosaurs;
 }
 

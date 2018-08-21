@@ -17,7 +17,7 @@ Request.prototype.post = function (payload) {
 };
 
 Request.prototype.delete = function (id) {
-  console.log(id);
+
   return fetch(`${this.url}/${id}`, {
     method: 'DELETE'
   })

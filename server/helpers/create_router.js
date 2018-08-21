@@ -53,7 +53,7 @@ const createRouter = function (collection) {
     const id = req.params.id;
     const updatedData = req.body;
     delete updatedData._id;
-    console.log(updatedData);
+
     collection.updateOne(
       {_id: ObjectID(id)},
       {$set: updatedData}

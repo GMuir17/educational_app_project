@@ -23,7 +23,7 @@ Timeline.prototype.renderTimeline = function (periods)  {
 
     item.addEventListener('click', (evt) => {
       const selectedPeriod = evt.target.value;
-      console.log(selectedPeriod);
+
       PubSub.publish('TimelineMenu:selected-period', selectedPeriod);
     })
   })

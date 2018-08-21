@@ -1,30 +1,31 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const DietView = function (tags) {
+const DietView = function (tags, diets) {
   this.tags = tags;
+  this.diets = diets;
 }
 
 DietView.prototype.bindEvents = function () {
-  PubSub.subscribe('Diet:all-diets-ready', (evt) => {
-    const diets = evt.detail;
-    console.log(diets);
-    this.tags.innerHTML = '';
-    this.renderTags(diets);
-  })
+  this.tags.innerHTML = '';
+
+PubSub.subscribe('Wikipedia:all-dinosaurs-ready', () => {
+  this.renderTags(this.diets);
+
+});
 };
 
 
-DietView.prototype.renderTags = function (diets) {
+DietView.prototype.renderTags = function () {
   const tagsList = document.createElement('ul');
-    const all = document.createElement('li');
-    all.textContent = 'Info';
-    all.value = -1;
-    all.addEventListener('click', (evt) => {
-      PubSub.publish('DietView:selected-diet', all.value);
-    })
+  const all = document.createElement('li');
+  all.textContent = 'Info';
+  all.value = -1;
+  all.addEventListener('click', (evt) => {
+    PubSub.publish('DietView:selected-diet', all.value);
+  })
   tagsList.appendChild(all);
 
-  diets.forEach((diet, index) => {
+  this.diets.forEach((diet, index) => {
     if(diet === 'carnivore' || diet === 'herbivore' || diet === 'omnivore') {
       const item = document.createElement('li');
       item.textContent = diet;
@@ -37,7 +38,7 @@ DietView.prototype.renderTags = function (diets) {
     }
   })
   this.tags.appendChild(tagsList);
-  console.log('asdfjkbiwubasdlnf ', this.tags);
+  console.log('this.tags', this.tags);
 };
 
 module.exports = DietView;

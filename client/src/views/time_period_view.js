@@ -13,8 +13,8 @@ const TimePeriodView = function (container) {
 TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
-     this.periodDescription = evt.detail;
-    console.log(evt.detail);
+    this.periodDescription = evt.detail;
+
     // this.renderDescription(periodDescription);
   })
 
@@ -31,11 +31,14 @@ TimePeriodView.prototype.bindEvents = function () {
 
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
-  // });
-  //
-  // PubSub.subscribe('Wikipedia:all-dinosaurs-ready', (evt) => {
+
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
+
+    PubSub.subscribe('Diet:all-diets-ready',(evt) => {
+      const diets = evt.detail;
+      this.renderDietTabs(diets);
+    });
   });
 };
 
@@ -49,8 +52,7 @@ TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
 };
 
 TimePeriodView.prototype.render = function (dinosaurs) {
-  this.renderContainer(dinosaurs)
-
+  this.renderDescription();
   dinosaurs.forEach((dinosaur) => {
     // TODO: should I use "article.dinosaur-preview" here?
     const article = document.createElement('article');
@@ -63,25 +65,8 @@ TimePeriodView.prototype.render = function (dinosaurs) {
   });
 };
 
-TimePeriodView.prototype.renderContainer = function (dinosaurs) {
-  const nav = document.createElement('nav');
-  nav.id = "families";
-  this.mainContainer.appendChild(nav);
-  this.renderDietTabs(nav);
-
-  this.renderDescription()
-
-  const summaryList = document.createElement('li');
-  nav.appendChild(summaryList);
-
-  const listItem = document.createElement('ul');
-  listItem.textContent = "All Dinos";
-  summaryList.appendChild(listItem);
-  // TODO: eventually pass this the dinosaurs.period
-};
-
 TimePeriodView.prototype.renderDescription = function () {
-  console.log(this.periodDescription);
+
   const descriptionParagraph = document.createElement('p');
   descriptionParagraph.classList.add("period-summary");
   descriptionParagraph.textContent = this.periodDescription;
@@ -91,11 +76,16 @@ TimePeriodView.prototype.renderDescription = function () {
 TimePeriodView.prototype.createMain = function () {
   const timePeriodContainer = document.createElement('main');
   timePeriodContainer.id = "time-period-display";
+  const nav = document.createElement('nav');
+  nav.id = "families";
+  timePeriodContainer.appendChild(nav);
   return timePeriodContainer;
 };
 
-TimePeriodView.prototype.renderDietTabs = function (element) {
-  const dietView = new DietView(element);
+TimePeriodView.prototype.renderDietTabs = function (diets) {
+  const dietNav = document.querySelector('#families')
+  
+  const dietView = new DietView(dietNav, diets);
   dietView.bindEvents();
 };
 
