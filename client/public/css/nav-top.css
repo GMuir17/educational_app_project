@@ -5,6 +5,7 @@
   justify-content: space-around;
   background: #E25D1E;
   color: #f4f4f4;
+  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #top-nav ul li {

@@ -43,6 +43,7 @@
 
 .period-summary {
   padding-left: 5vh;
+  padding-right: 5vh;
   grid-area: 2 / 1 / span 1 / span 4
 }
 
@@ -66,7 +67,7 @@
 }
 
 .time-period-lightbox {
-  position: absolute;
+  position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
