@@ -6,16 +6,12 @@ const TimePeriodView = function (container) {
   this.container = container;
   this.mainContainer = null;
   this.periodDescription = null;
-  // this.createDinosaurViewOnClick = this.createDinosaurViewOnClick.bind(this);
-  // this.removeDinosaurViewOnClick = this.removeDinosaurViewOnClick.bind(this);
 };
 
 TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
     this.periodDescription = evt.detail;
-
-    // this.renderDescription(periodDescription);
   })
 
   // TODO: make sure this channel matches with the wiki view
@@ -84,7 +80,7 @@ TimePeriodView.prototype.createMain = function () {
 
 TimePeriodView.prototype.renderDietTabs = function (diets) {
   const dietNav = document.querySelector('#families')
-  
+
   const dietView = new DietView(dietNav, diets);
   dietView.bindEvents();
 };
