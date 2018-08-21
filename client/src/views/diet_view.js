@@ -20,11 +20,15 @@ DietView.prototype.bindEvents = function () {
   this.diets.forEach((diet, index) => {
     if(diet === 'carnivore' || diet === 'herbivore' || diet === 'omnivore') {
       const item = document.createElement('li');
-      item.textContent = diet;
+      item.textContent = this.capitalizeFirstLetter(diet);
       item.value = index;
       tagsList.appendChild(item);
 
       item.addEventListener('click', (evt) => {
+        const previews = document.querySelectorAll('.dinosaur-preview');
+        previews.forEach((preview, index) => {
+          preview.parentNode.removeChild(preview);
+        })
         PubSub.publish('DietView:selected-diet', item.value);
       })
     }
@@ -32,4 +36,9 @@ DietView.prototype.bindEvents = function () {
   this.tags.appendChild(tagsList);
 };
 
+DietView.prototype.capitalizeFirstLetter = function (word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+};
+
+console.log('Diet View Model', DietView);
 module.exports = DietView;

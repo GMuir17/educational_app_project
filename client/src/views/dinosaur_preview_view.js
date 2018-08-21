@@ -18,7 +18,7 @@ DinosaurPreviewView.prototype.render = function () {
 
 DinosaurPreviewView.prototype.createTitle = function () {
   const title = document.createElement('h4');
-  title.classList.add("preview-title");
+  title.classList.add('preview-title');
   title.textContent = this.dinosaur.name;
   return title;
 };

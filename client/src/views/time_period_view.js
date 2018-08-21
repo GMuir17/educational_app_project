@@ -14,14 +14,15 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
     const periodDescription = evt.detail;
+    console.log("break");
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
+
     this.renderDescription(periodDescription);
   })
 
   PubSub.subscribe('Diet:all-diets-ready',(evt) => {
     const diets = evt.detail;
-
     this.renderDietTabs(diets);
 
   });
@@ -29,14 +30,14 @@ TimePeriodView.prototype.bindEvents = function () {
   PubSub.subscribe('Wikipedia:all-dinosaurs-ready', (evt) => {
     const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
+    console.log('lightbox happens');
     this.container.appendChild(lightbox)
     lightbox.addEventListener('click', () => {
       this.container.innerHTML = '';
     });
-
+    console.log('creating dinosaurs?');
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
-
 
   });
 };
@@ -53,7 +54,7 @@ TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
 TimePeriodView.prototype.render = function (dinosaurs) {
   dinosaurs.forEach((dinosaur) => {
     const article = document.createElement('article');
-    article.classList.add("dinosaur-preview");
+    article.className = 'dinosaur-preview';
     const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
     dinosaurPreviewView.makeEventListener();
     dinosaurPreviewView.render()
