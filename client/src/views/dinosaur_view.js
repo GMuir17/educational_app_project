@@ -78,7 +78,6 @@ DinosaurView.prototype.createImage = function (dinosaur) {
 DinosaurView.prototype.createFactFile = function (dinosaur) {
   const factFile = document.createElement('p');
   factFile.id = 'fact-file'
-
   const splitDescription = this.splitDescription(dinosaur.description);
   const secondParagraph = `${splitDescription[1]}`;
   const splitDescriptionSentences = secondParagraph.split(". ");
@@ -100,7 +99,7 @@ DinosaurView.prototype.deleteSelf = function () {
 
 DinosaurView.prototype.splitDescription = function (text) {
   if (text === undefined) {
-    return ["No description available from Wikipedia.", "Sorry. Still no data"]
+    return ["No description available from Wikipedia.", "Unfortunately, fossil records for many dinosaurs are incomplete or rare; This can mean that whilst the Paleobiology database has a record of the suspected species, wikipedia is yet to make a record of rarer dinosaur. If more data is avaliable, this page will be updated."]
   }
   else {
     return text.split('\n');
