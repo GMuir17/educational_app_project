@@ -26,7 +26,8 @@ DinosaurPreviewView.prototype.createTitle = function () {
 DinosaurPreviewView.prototype.createDescription = function () {
   const description = document.createElement('p');
   description.classList.add("preview-description");
-  description.textContent = this.dinosaur.description;
+  const dinosaurDescription = this.dinosaur.description.split(". ")
+  description.textContent = `${dinosaurDescription[0]}.`;
   return description;
 };
 
