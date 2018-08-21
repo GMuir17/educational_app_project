@@ -14,7 +14,6 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
     const periodDescription = evt.detail;
-    console.log("break");
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
 
@@ -23,8 +22,6 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Diet:all-diets-ready',(evt) => {
     const diets = evt.detail;
-    console.log(diets);
-
 
     this.renderDietTabs(diets);
 
