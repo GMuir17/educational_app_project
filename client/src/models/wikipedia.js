@@ -31,13 +31,12 @@ Wikipedia.prototype.bindEvents = function () {
       const request = new RequestHelper(url);
       promises.push(request.get());
 
-      const imgUrl =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
-      const requestImg = new RequestHelper(imgUrl);
-      promises.push(requestImg.get());
-
       return promises;
     }, []))
     .then((dinosaursData) => {
+      this.wikiDinosaurs = getExtraData(dinosaursData);
+      this.mergeData(this.wikiDinosaurs);
+      console.log('log 1:', this.dinosaursSelected);
       Promise.all(this.dinosaursSelected.reduce((promises, object) => {
         const imgAddress =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
         const requestaddress = new RequestHelper(imgAddress);
@@ -46,6 +45,7 @@ Wikipedia.prototype.bindEvents = function () {
         return promises;
       }, []))
       .then((images) => {
+        console.log('log 2: ', images);
         const imgObject = images;
         const imgAddress = getAddress(imgObject);
         Promise.all(imgAddress.reduce((promises, object) => {
@@ -56,12 +56,9 @@ Wikipedia.prototype.bindEvents = function () {
           return promises
         }, []))
         .then((imagesObject) => {
+          console.log('log 3: ', imagesObject);
           this.wikiImages = getImagesUrl(imagesObject);
           this.mergeImages(this.wikiImages);
-
-          this.wikiDinosaurs = getExtraData(dinosaursData);
-          this.mergeData(this.wikiDinosaurs);
-          console.log(this.dinosaursSelected);
 
           PubSub.publish('Wikipedia:all-dinosaurs-ready', this.dinosaursSelected);
         })
@@ -117,19 +114,6 @@ Wikipedia.prototype.mergeImages = function (images) {
   })
 };
 
-function filteredData(wikiDinosaurs) {
-  const newArray = [];
-  for (i = 0; i < wikiDinosaurs.length; i++) {
-    const pageNumber = Object.keys(wikiDinosaurs[i].query.pages);
-    if (i % 2  === 0) {
-      newArray.push(wikiDinosaurs[i].query.pages[pageNumber].extract)
-    }
-    else {
-      newArray.push(wikiDinosaurs[i].query.pages[pageNumber].pageimage);
-    }
-  }
-  return newArray;
-};
 
 Wikipedia.prototype.mergeData = function (extraData) {
   this.dinosaursSelected.forEach((dinosaur, index) => {
