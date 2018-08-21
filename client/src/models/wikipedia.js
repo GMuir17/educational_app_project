@@ -23,7 +23,6 @@ Wikipedia.prototype.bindEvents = function () {
 
   PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
     this.dinosaurs = evt.detail;
-
     this.dinosaursSelected = this.dinosaurs.slice(0, 8);
 
 
@@ -92,12 +91,11 @@ function getAddress(object) {
 function getImagesUrl(objects) {
   const newArray = [];
   objects.forEach((object) => {
-
-    const url = object.query.pages["-1"].imageinfo[0].url;
-    if (object.query === undefined) {
-      newArray.push('No image avaliable')
+    if (object.query.pages["-1"].imageinfo === undefined) {
+      newArray.push('/images/dinosaur-chicken-hybrid.png')
     }
     else {
+      const url = object.query.pages["-1"].imageinfo[0].url;
       newArray.push(url)
     }
   })

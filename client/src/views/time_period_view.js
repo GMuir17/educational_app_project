@@ -23,7 +23,6 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Diet:all-diets-ready',(evt) => {
     const diets = evt.detail;
-    console.log(diets);
     this.renderDietTabs(diets);
 
   });
