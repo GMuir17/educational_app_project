@@ -37,8 +37,6 @@ TimePeriodView.prototype.bindEvents = function () {
 
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
-
-
   });
 };
 
@@ -86,6 +84,12 @@ TimePeriodView.prototype.renderDietTabs = function (diets) {
   const dietView = new DietView(this.nav, diets);
   dietView.bindEvents();
   this.mainContainer.appendChild(this.nav);
+};
+
+TimePeriodView.prototype.removePreviews = function () {
+  const previews = document.querySelector('.dinosaur-preview');
+  previews.innerHTML = '';
+  previews.classList = '';
 };
 
 module.exports = TimePeriodView;
