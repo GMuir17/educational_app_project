@@ -84,7 +84,7 @@ TimePeriodView.prototype.createMain = function () {
 
 TimePeriodView.prototype.renderDietTabs = function (diets) {
   const dietNav = document.querySelector('#families')
-  
+
   const dietView = new DietView(dietNav, diets);
   dietView.bindEvents();
 };

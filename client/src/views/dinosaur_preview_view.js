@@ -33,7 +33,7 @@ DinosaurPreviewView.prototype.createDescription = function () {
 DinosaurPreviewView.prototype.createImage = function () {
   const image = document.createElement('img');
   image.classList.add("preview-image");
-  image.src = this.dinosaur.imageURL;
+  image.src = this.dinosaur.image;
   // TODO: change this;
   image.alt = "A very good boy";
   return image;
@@ -47,7 +47,6 @@ DinosaurPreviewView.prototype.makeEventListener = function () {
 };
 
 DinosaurPreviewView.prototype.deleteSelf = function () {
-
   this.container.innerHTML = '';
 };
 

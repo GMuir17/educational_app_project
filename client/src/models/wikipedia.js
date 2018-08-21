@@ -10,30 +10,23 @@ const Wikipedia = function () {
 
 
 Wikipedia.prototype.bindEvents = function () {
-  PubSub.subscribe('Timeline:selected-period-ready', (evt) => {
-    const period = evt.detail.periodName;
-    const periodUrl =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${period}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
-    const requestPeriod = new RequestHelper(periodUrl);
-    requestPeriod.get()
-      .then((period) => {
-      const periodData = getPeriodData(period);
-      PubSub.publish('Wikipedia:period-data-ready', periodData);
-      })
-  })
-
   PubSub.subscribe(`Dinosaur:all-dinosaurs-ready`, (evt) => {
     this.dinosaurs = evt.detail;
+
     this.dinosaursSelected = this.dinosaurs.slice(0, 8);
 
 
     Promise.all(this.dinosaursSelected.reduce((promises, object) => {
-      const url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`;
+      const url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
       const request = new RequestHelper(url);
       promises.push(request.get());
 
+      const imgUrl =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
+      const requestImg = new RequestHelper(imgUrl);
+      promises.push(requestImg.get());
+
       return promises;
     }, []))
-
     .then((dinosaursData) => {
       Promise.all(this.dinosaursSelected.reduce((promises, object) => {
         const imgAddress =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
@@ -41,39 +34,33 @@ Wikipedia.prototype.bindEvents = function () {
         promises.push(requestaddress.get());
 
         return promises;
+      }, []))
+      .then((images) => {
+        const imgObject = images;
+        const imgAddress = getAddress(imgObject);
+        Promise.all(imgAddress.reduce((promises, object) => {
+          const imgUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=File:${object}&prop=imageinfo&iiprop=url&format=json&origin=*`
+          const requestImg = new RequestHelper(imgUrl);
+          promises.push(requestImg.get());
+
+          return promises
         }, []))
+        .then((imagesObject) => {
+          this.wikiImages = getImagesUrl(imagesObject);
+          this.mergeImages(this.wikiImages);
 
-        .then((images) => {
-          const imgObject = images;
-          const imgAddress = getAddress(imgObject);
-          Promise.all(imgAddress.reduce((promises, object) => {
-            const imgUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=File:${object}&prop=imageinfo&iiprop=url&format=json&origin=*`
-            const requestImg = new RequestHelper(imgUrl);
-            promises.push(requestImg.get());
+          this.wikiDinosaurs = getExtraData(dinosaursData);
+          this.mergeData(this.wikiDinosaurs);
 
-            return promises
-          }, []))
-
-          .then((imagesObject) => {
-            this.wikiImages = getImagesUrl(imagesObject);
-            this.mergeImages(this.wikiImages);
-          })
+          PubSub.publish('Wikipedia:all-dinosaurs-ready', this.dinosaursSelected);
         })
+      })
 
-        this.wikiDinosaurs = getExtraData(dinosaursData);
-        this.mergeData(this.wikiDinosaurs);
-
-        PubSub.publish('Wikipedia:all-dinosaurs-ready', this.dinosaursSelected);
     })
     .catch((err) => {
       console.error(err);
     })
   })
-}
-
-function getPeriodData(object) {
-  const pageNumber = Object.keys(object.query.pages);
-  return object.query.pages[pageNumber].extract;
 }
 
 function getAddress(object) {
@@ -113,6 +100,20 @@ Wikipedia.prototype.mergeImages = function (images) {
   this.dinosaursSelected.forEach((dinosaur, index) => {
     dinosaur.image = images[index];
   })
+};
+
+function filteredData(wikiDinosaurs) {
+  const newArray = [];
+  for (i = 0; i < wikiDinosaurs.length; i++) {
+    const pageNumber = Object.keys(wikiDinosaurs[i].query.pages);
+    if (i % 2  === 0) {
+      newArray.push(wikiDinosaurs[i].query.pages[pageNumber].extract)
+    }
+    else {
+      newArray.push(wikiDinosaurs[i].query.pages[pageNumber].pageimage);
+    }
+  }
+  return newArray;
 };
 
 Wikipedia.prototype.mergeData = function (extraData) {
