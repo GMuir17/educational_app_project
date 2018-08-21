@@ -79,9 +79,7 @@ DinosaurView.prototype.createFactFile = function (dinosaur) {
   const factFile = document.createElement('p');
   factFile.id = 'fact-file'
   const splitDescription = this.splitDescription(dinosaur.description);
-  const secondParagraph = `${splitDescription[1]}`;
-  const splitDescriptionSentences = secondParagraph.split(". ");
-  factFile.textContent = `${splitDescriptionSentences[0]}. ${splitDescriptionSentences[1]}.`
+  factFile.textContent = `${splitDescription[1]}`
   return factFile;
 };
 
