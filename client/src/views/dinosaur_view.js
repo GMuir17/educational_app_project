@@ -57,7 +57,6 @@ DinosaurView.prototype.createInfoPara = function (dinosaur) {
   title.textContent = `${dinosaur.name}`
   const paragraph = document.createElement('p')
 
-  // TODO: split description method
   const splitDescription = this.splitDescription(dinosaur.description);
   paragraph.textContent = `${splitDescription[0]}`
   section.appendChild(title);
@@ -80,7 +79,6 @@ DinosaurView.prototype.createFactFile = function (dinosaur) {
   const factFile = document.createElement('p');
   factFile.id = 'fact-file'
 
-  // TODO: split description method
   const splitDescription = this.splitDescription(dinosaur.description);
   const secondParagraph = `${splitDescription[1]}`;
   const splitDescriptionSentences = secondParagraph.split(". ");
@@ -101,7 +99,12 @@ DinosaurView.prototype.deleteSelf = function () {
 };
 
 DinosaurView.prototype.splitDescription = function (text) {
-  return text.split('\n');
+  if (text === undefined) {
+    return ["No description available from Wikipedia.", "Sorry. Still no data"]
+  }
+  else {
+    return text.split('\n');
+  }
 };
 
 module.exports = DinosaurView;

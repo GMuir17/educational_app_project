@@ -26,10 +26,14 @@ DinosaurPreviewView.prototype.createTitle = function () {
 DinosaurPreviewView.prototype.createDescription = function () {
   const description = document.createElement('p');
   description.classList.add("preview-description");
-  // TODO: don't know why this wasn't working
-  if (this.dinosaur.description === undefined) {return description}
-  const dinosaurDescription = this.dinosaur.description.split(". ")
-  description.textContent = `${dinosaurDescription[0]}.`;
+
+  if (this.dinosaur.description === undefined) {
+    description.textContent = "No description available from Wikipedia."
+  }
+  else {
+    const dinosaurDescription = this.dinosaur.description.split(". ")
+    description.textContent = `${dinosaurDescription[0]}.`;
+  }
   return description;
 };
 
