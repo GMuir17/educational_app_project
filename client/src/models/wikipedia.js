@@ -75,6 +75,11 @@ Wikipedia.prototype.bindEvents = function () {
   })
 }
 
+function getPeriodData(object) {
+  const pageNumber = Object.keys(object.query.pages);
+  return object.query.pages[pageNumber].extract;
+}
+
 function getAddress(object) {
   const newArray = [];
   for (i = 0; i < object.length; i++) {
