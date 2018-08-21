@@ -37,8 +37,7 @@ DinosaurPreviewView.prototype.createImage = function () {
   const image = document.createElement('img');
   image.classList.add("preview-image");
   image.src = this.dinosaur.image;
-  // TODO: change this;
-  image.alt = "A very good boy";
+  image.alt = this.dinosaur.name;
   return image;
 };
 
