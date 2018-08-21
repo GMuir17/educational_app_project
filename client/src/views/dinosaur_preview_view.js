@@ -26,16 +26,18 @@ DinosaurPreviewView.prototype.createTitle = function () {
 DinosaurPreviewView.prototype.createDescription = function () {
   const description = document.createElement('p');
   description.classList.add("preview-description");
-  description.textContent = this.dinosaur.description;
+  // TODO: don't know why this wasn't working
+  if (this.dinosaur.description === undefined) {return description}
+  const dinosaurDescription = this.dinosaur.description.split(". ")
+  description.textContent = `${dinosaurDescription[0]}.`;
   return description;
 };
 
 DinosaurPreviewView.prototype.createImage = function () {
   const image = document.createElement('img');
   image.classList.add("preview-image");
-  image.src = this.dinosaur.imageURL;
-  // TODO: change this;
-  image.alt = "A very good boy";
+  image.src = this.dinosaur.image;
+  image.alt = this.dinosaur.name;
   return image;
 };
 
@@ -47,7 +49,6 @@ DinosaurPreviewView.prototype.makeEventListener = function () {
 };
 
 DinosaurPreviewView.prototype.deleteSelf = function () {
-
   this.container.innerHTML = '';
 };
 

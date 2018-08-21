@@ -35,7 +35,7 @@ DinosaurView.prototype.preRender = function (dinosaur, element) {
   const dinosaurImage = this.createImage(dinosaur.imageURL);
   dinosaurDiv.appendChild(dinosaurImage)
 
-  const factFile = this.createFactFile(dinosaur.facts);
+  const factFile = this.createFactFile(dinosaur);
   dinosaurDiv.appendChild(factFile);
 
   const mapContainer = this.createMapElement(dinosaur);
@@ -54,7 +54,8 @@ DinosaurView.prototype.createInfoPara = function (dinosaur) {
   const title = document.createElement('h2')
   title.textContent = `${dinosaur.name}`
   const paragraph = document.createElement('p')
-  paragraph.textContent = `${dinosaur.description}`
+  const splitDescription = dinosaur.description.split("\n");
+  paragraph.textContent = `${splitDescription[0]}`
   section.appendChild(title);
   section.appendChild(paragraph);
   return section;
@@ -70,10 +71,13 @@ DinosaurView.prototype.createImage = function (image) {
   return container;
 };
 
-DinosaurView.prototype.createFactFile = function (facts) {
+DinosaurView.prototype.createFactFile = function (dinosaur) {
   const factFile = document.createElement('p');
   factFile.id = 'fact-file'
-  factFile.textContent = `${facts}`;
+  const splitDescription = dinosaur.description.split("\n");
+  const secondParagraph = `${splitDescription[1]}`;
+  const splitDescriptionSentences = secondParagraph.split(". ");
+  factFile.textContent = `${splitDescriptionSentences[0]}. ${splitDescriptionSentences[1]}.`
   return factFile;
 };
 
