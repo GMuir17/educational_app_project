@@ -46,9 +46,9 @@
 .dinosaur-lightbox {
   position: fixed;
   left: 0px;
-  top: 90px;
-  height: 85vh;
-  width: 80vw;
+  top: 0px;
+  height: 100%;
+  width: 100%;
   background-color: #00000080;
   z-index: 3;
 }

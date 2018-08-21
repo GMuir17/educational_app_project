@@ -24,7 +24,9 @@ DinosaurView.prototype.preRender = function (dinosaur, element) {
   const lightbox = document.createElement('div')
   lightbox.classList = 'dinosaur-lightbox'
   lightbox.addEventListener('click', this.removeDinosaurViewOnClick);
-  this.element.appendChild(lightbox)
+  this.element.appendChild(lightbox);
+  const otherLightbox = document.querySelector('.time-period-lightbox');
+  otherLightbox.classList = 'disabled-lightbox';
 
   const dinosaurDiv = document.createElement('article');
   dinosaurDiv.id = "dinosaur-view";
@@ -90,6 +92,8 @@ DinosaurView.prototype.createMapElement = function () {
 
 DinosaurView.prototype.deleteSelf = function () {
   this.element.innerHTML = '';
+  const otherLightbox = document.querySelector('.disabled-lightbox');
+  otherLightbox.classList = 'time-period-lightbox';
 };
 
 module.exports = DinosaurView;
