@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroImages = new HeroImages(imageContainer);
   heroImages.showRandomImage();
 
+  const timePeriodContainer = document.querySelector('#time-period-display-container');
+  const timePeriodView = new TimePeriodView(timePeriodContainer);
+  timePeriodView.bindEvents();
 
   const timelineNav = document.querySelector('#timeline-container');
   const timelineView = new TimelineView(timelineNav);
@@ -45,9 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const dinosaurView = new DinosaurView(dinosaurViewElement);
   dinosaurView.bindEvents();
 
-  const timePeriodContainer = document.querySelector('#time-period-display-container');
-  const timePeriodView = new TimePeriodView(timePeriodContainer);
-  timePeriodView.bindEvents();
 
   const map = new Map();
   map.bindEvents();

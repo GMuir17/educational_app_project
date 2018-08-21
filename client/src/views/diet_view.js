@@ -8,14 +8,6 @@ const DietView = function (tags, diets) {
 DietView.prototype.bindEvents = function () {
   this.tags.innerHTML = '';
 
-PubSub.subscribe('Wikipedia:all-dinosaurs-ready', () => {
-  this.renderTags(this.diets);
-
-});
-};
-
-
-DietView.prototype.renderTags = function () {
   const tagsList = document.createElement('ul');
   const all = document.createElement('li');
   all.textContent = 'Info';
