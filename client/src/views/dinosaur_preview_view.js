@@ -48,7 +48,6 @@ DinosaurPreviewView.prototype.makeEventListener = function () {
 };
 
 DinosaurPreviewView.prototype.deleteSelf = function () {
-
   this.container.innerHTML = '';
 };
 
