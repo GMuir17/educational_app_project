@@ -36,7 +36,6 @@ Wikipedia.prototype.bindEvents = function () {
     .then((dinosaursData) => {
       this.wikiDinosaurs = getExtraData(dinosaursData);
       this.mergeData(this.wikiDinosaurs);
-      console.log('log 1:', this.dinosaursSelected);
       Promise.all(this.dinosaursSelected.reduce((promises, object) => {
         const imgAddress =   `https://en.wikipedia.org/w/api.php?action=query&titles=${object.name}&format=json&prop=pageimages&origin=*`
         const requestaddress = new RequestHelper(imgAddress);
@@ -45,7 +44,6 @@ Wikipedia.prototype.bindEvents = function () {
         return promises;
       }, []))
       .then((images) => {
-        console.log('log 2: ', images);
         const imgObject = images;
         const imgAddress = getAddress(imgObject);
         Promise.all(imgAddress.reduce((promises, object) => {
@@ -56,7 +54,6 @@ Wikipedia.prototype.bindEvents = function () {
           return promises
         }, []))
         .then((imagesObject) => {
-          console.log('log 3: ', imagesObject);
           this.wikiImages = getImagesUrl(imagesObject);
           this.mergeImages(this.wikiImages);
 
