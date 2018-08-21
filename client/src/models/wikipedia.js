@@ -21,7 +21,7 @@ Wikipedia.prototype.bindEvents = function () {
       })
   })
 
-  PubSub.subscribe(`Dinosaur:all-dinosaurs-ready`, (evt) => {
+  PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
     this.dinosaurs = evt.detail;
 
     this.dinosaursSelected = this.dinosaurs.slice(0, 8);
@@ -62,6 +62,7 @@ Wikipedia.prototype.bindEvents = function () {
 
           this.wikiDinosaurs = getExtraData(dinosaursData);
           this.mergeData(this.wikiDinosaurs);
+          console.log(this.dinosaursSelected);
 
           PubSub.publish('Wikipedia:all-dinosaurs-ready', this.dinosaursSelected);
         })

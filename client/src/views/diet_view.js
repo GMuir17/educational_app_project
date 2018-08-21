@@ -1,5 +1,4 @@
 const PubSub = require('../helpers/pub_sub.js');
-const TimePeriodView = require('./time_period_view.js');
 
 const DietView = function (tags, diets) {
   this.tags = tags;
@@ -26,7 +25,10 @@ DietView.prototype.bindEvents = function () {
       tagsList.appendChild(item);
 
       item.addEventListener('click', (evt) => {
-        TimePeriodView.removePreviews();
+        const previews = document.querySelectorAll('.dinosaur-preview');
+        previews.forEach((preview, index) => {
+          preview.parentNode.removeChild(preview);
+        })
         PubSub.publish('DietView:selected-diet', item.value);
       })
     }
@@ -38,4 +40,5 @@ DietView.prototype.capitalizeFirstLetter = function (word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
+console.log('Diet View Model', DietView);
 module.exports = DietView;

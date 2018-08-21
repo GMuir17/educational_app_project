@@ -14,15 +14,16 @@ TimePeriodView.prototype.bindEvents = function () {
 
   PubSub.subscribe('Wikipedia:period-data-ready', (evt) => {
     const periodDescription = evt.detail;
+    console.log("break");
     this.mainContainer = this.createMain();
     this.container.appendChild(this.mainContainer);
+
     this.renderDescription(periodDescription);
   })
 
   PubSub.subscribe('Diet:all-diets-ready',(evt) => {
     const diets = evt.detail;
-
-
+    console.log(diets);
     this.renderDietTabs(diets);
 
   });
@@ -30,13 +31,15 @@ TimePeriodView.prototype.bindEvents = function () {
   PubSub.subscribe('Wikipedia:all-dinosaurs-ready', (evt) => {
     const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
+    console.log('lightbox happens');
     this.container.appendChild(lightbox)
     lightbox.addEventListener('click', () => {
       this.container.innerHTML = '';
     });
-
+    console.log('creating dinosaurs?');
     const dinosaurs = evt.detail;
     this.render(dinosaurs);
+
   });
 };
 
@@ -52,7 +55,7 @@ TimePeriodView.prototype.createDinosaurViewOnClick = function (evt) {
 TimePeriodView.prototype.render = function (dinosaurs) {
   dinosaurs.forEach((dinosaur) => {
     const article = document.createElement('article');
-    article.classList.add("dinosaur-preview");
+    article.className = 'dinosaur-preview';
     const dinosaurPreviewView = new DinosaurPreviewView(article, dinosaur);
     dinosaurPreviewView.makeEventListener();
     dinosaurPreviewView.render()
@@ -64,10 +67,8 @@ TimePeriodView.prototype.render = function (dinosaurs) {
 TimePeriodView.prototype.renderDescription = function (periodDescription) {
 
   const descriptionParagraph = document.createElement('p');
-  descriptionParagraph.classList.add("period-summary")
-  console.log(periodDescription);
-  const descriptionSentences = periodDescription.split(". ");
-  descriptionParagraph.textContent = `${descriptionSentences[0]}. ${descriptionSentences[1]}. ${descriptionSentences[2]}.`;
+  descriptionParagraph.classList.add("period-summary");
+  descriptionParagraph.textContent = periodDescription;
   this.mainContainer.appendChild(descriptionParagraph);
 };
 
@@ -84,12 +85,6 @@ TimePeriodView.prototype.renderDietTabs = function (diets) {
   const dietView = new DietView(this.nav, diets);
   dietView.bindEvents();
   this.mainContainer.appendChild(this.nav);
-};
-
-TimePeriodView.prototype.removePreviews = function () {
-  const previews = document.querySelector('.dinosaur-preview');
-  previews.innerHTML = '';
-  previews.classList = '';
 };
 
 module.exports = TimePeriodView;
