@@ -56,7 +56,9 @@ DinosaurView.prototype.createInfoPara = function (dinosaur) {
   const title = document.createElement('h2')
   title.textContent = `${dinosaur.name}`
   const paragraph = document.createElement('p')
-  const splitDescription = dinosaur.description.split("\n");
+
+  // TODO: split description method
+  const splitDescription = this.splitDescription(dinosaur.description);
   paragraph.textContent = `${splitDescription[0]}`
   section.appendChild(title);
   section.appendChild(paragraph);
@@ -77,7 +79,9 @@ DinosaurView.prototype.createImage = function (dinosaur) {
 DinosaurView.prototype.createFactFile = function (dinosaur) {
   const factFile = document.createElement('p');
   factFile.id = 'fact-file'
-  const splitDescription = dinosaur.description.split("\n");
+
+  // TODO: split description method
+  const splitDescription = this.splitDescription(dinosaur.description);
   const secondParagraph = `${splitDescription[1]}`;
   const splitDescriptionSentences = secondParagraph.split(". ");
   factFile.textContent = `${splitDescriptionSentences[0]}. ${splitDescriptionSentences[1]}.`
@@ -94,6 +98,10 @@ DinosaurView.prototype.deleteSelf = function () {
   this.element.innerHTML = '';
   const otherLightbox = document.querySelector('.disabled-lightbox');
   otherLightbox.classList = 'time-period-lightbox';
+};
+
+DinosaurView.prototype.splitDescription = function (text) {
+  return text.split('\n');
 };
 
 module.exports = DinosaurView;
