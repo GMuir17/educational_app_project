@@ -14,16 +14,18 @@ Map.prototype.bindEvents = function () {
 }
 
 Map.prototype.createMap = function (dinosaur) {
-  if (dinosaur.coords.length === 2) {
+  console.log("COORDS TYPE: ", typeof dinosaur.coords[0]);
+  if (typeof dinosaur.coords[0] === "number") {
     console.log("FAKE MAP");
-    const map = L.map('map').setView([55.9533, 3.1833], 4);
+    const newCoords = [dinosaur.coords];
+    const map = L.map('map').setView(newCoords[0], 2);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       maxZoom: 18,
       id: 'mapbox.streets',
       accessToken: tilesetKey
     }).addTo(map);
     const icon = this.createIcon(dinosaur.imageId)
-    dinosaur.coords.forEach((coordinates, index) => {
+    newCoords.forEach((coordinates, index) => {
       L.marker(coordinates, icon).addTo(map)
     })
   }
