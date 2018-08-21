@@ -39,14 +39,13 @@
 
 #dinosaur-image{
   height: 25vh;
-  width: 27.5vw;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dinosaur-lightbox {
   position: fixed;
-  left: 300px;
+  left: 0px;
   top: 90px;
   height: 85vh;
   width: 80vw;

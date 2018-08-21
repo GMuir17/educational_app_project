@@ -18,7 +18,6 @@ Wikipedia.prototype.bindEvents = function () {
       .then((period) => {
       const periodData = getPeriodData(period);
       PubSub.publish('Wikipedia:period-data-ready', periodData);
-      console.log(periodData);
       })
   })
 

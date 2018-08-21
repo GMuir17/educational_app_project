@@ -32,7 +32,7 @@ DinosaurView.prototype.preRender = function (dinosaur, element) {
   const infoPara = this.createInfoPara(dinosaur);
   dinosaurDiv.appendChild(infoPara);
 
-  const dinosaurImage = this.createImage(dinosaur.imageURL);
+  const dinosaurImage = this.createImage(dinosaur);
   dinosaurDiv.appendChild(dinosaurImage)
 
   const factFile = this.createFactFile(dinosaur);
@@ -61,13 +61,14 @@ DinosaurView.prototype.createInfoPara = function (dinosaur) {
   return section;
 };
 
-DinosaurView.prototype.createImage = function (image) {
+DinosaurView.prototype.createImage = function (dinosaur) {
   const container = document.createElement('section');
   container.id = 'dinosaur-image-container';
-  const dinosaurImage = document.createElement('img');
-  dinosaurImage.setAttribute('src', `${image}`);
-  dinosaurImage.id = 'dinosaur-image';
-  container.appendChild(dinosaurImage);
+  const image = document.createElement('img');
+  image.id = 'dinosaur-image';
+  image.src = dinosaur.image;
+  image.alt = dinosaur.name;
+  container.appendChild(image);
   return container;
 };
 

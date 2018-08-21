@@ -30,7 +30,6 @@ DietView.prototype.bindEvents = function () {
     }
   })
   this.tags.appendChild(tagsList);
-  console.log('this.tags', this.tags);
 };
 
 module.exports = DietView;
