@@ -12,6 +12,7 @@ Diet.prototype.bindEvents = function () {
     PubSub.publish('Diet:all-diets-ready', uniqueDietsSorted);
 
     PubSub.subscribe('DietView:selected-diet', (evt) => {
+      console.log("SELECTED DIET");
       const selectedIndex = evt.detail;
       if (selectedIndex === -1) {
         PubSub.publish('Dinosaur:all-dinosaurs-ready', this.dinosaurs)

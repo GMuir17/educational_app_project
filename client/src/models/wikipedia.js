@@ -15,16 +15,16 @@ Wikipedia.prototype.bindEvents = function () {
     const periodUrl =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${period}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
     const requestPeriod = new RequestHelper(periodUrl);
     requestPeriod.get()
-      .then((period) => {
+    .then((period) => {
       const periodData = getPeriodData(period);
       PubSub.publish('Wikipedia:period-data-ready', periodData);
-      })
+    })
   })
 
   PubSub.subscribe('Dinosaur:all-dinosaurs-ready', (evt) => {
+    console.log("DINOS SUBSCRIBED");
     this.dinosaurs = evt.detail;
     this.dinosaursSelected = this.dinosaurs.slice(0, 8);
-
 
     Promise.all(this.dinosaursSelected.reduce((promises, object) => {
       const url =   `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${object.name}&exintro=1&explaintext=1&exsectionformat=plain&origin=*`
@@ -56,7 +56,6 @@ Wikipedia.prototype.bindEvents = function () {
         .then((imagesObject) => {
           this.wikiImages = getImagesUrl(imagesObject);
           this.mergeImages(this.wikiImages);
-
           PubSub.publish('Wikipedia:all-dinosaurs-ready', this.dinosaursSelected);
         })
       })

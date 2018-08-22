@@ -24,8 +24,6 @@ Dinosaur.prototype.get = function () {
     .then((dinosaurs) => {
 
       const dinosaursData = this.filterDinosaurData(dinosaurs.records);
-
-
       const dinosaursDataUnique = filterByGenusName(dinosaursData);
       PubSub.publish('Dinosaur:all-dinosaurs-ready', dinosaursDataUnique);
       PubSub.publish('Dinosaur:dinosaurs-ready', dinosaursDataUnique);

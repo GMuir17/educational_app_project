@@ -30,6 +30,7 @@ DietView.prototype.bindEvents = function () {
           preview.parentNode.removeChild(preview);
         })
         PubSub.publish('DietView:selected-diet', item.value);
+        console.log("SELECTED DIET: ", item.value);
       })
     }
   })

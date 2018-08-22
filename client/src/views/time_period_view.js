@@ -27,6 +27,7 @@ TimePeriodView.prototype.bindEvents = function () {
   });
 
   PubSub.subscribe('Wikipedia:all-dinosaurs-ready', (evt) => {
+
     const lightbox = document.createElement('div')
     lightbox.classList = 'time-period-lightbox'
     this.container.appendChild(lightbox)
