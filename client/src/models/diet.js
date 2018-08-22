@@ -19,7 +19,6 @@ Diet.prototype.bindEvents = function () {
       else {
         const selectedDiet = uniqueDietsSorted[selectedIndex];
         const filteredDinosaurs = this.getDinosaursByDiet(selectedDiet);
-        console.log(filteredDinosaurs);
         PubSub.publish('Dinosaur:all-dinosaurs-ready', filteredDinosaurs);
       }
     })
