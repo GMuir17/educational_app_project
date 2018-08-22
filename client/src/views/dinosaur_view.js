@@ -80,8 +80,14 @@ DinosaurView.prototype.createFactFile = function (dinosaur) {
   factFile.id = 'fact-file'
   const splitDescription = this.splitDescription(dinosaur.description);
   const secondParagraph = `${splitDescription[1]}`;
-  const splitDescriptionSentences = secondParagraph.split(". ");
-  factFile.textContent = `${splitDescriptionSentences[0]}. ${splitDescriptionSentences[1]}.`
+
+  if (splitDescription.length === 1) {
+    factFile.textContent = "Unfortunately, fossil records for many dinosaurs are incomplete or rare; This can mean that whilst the Paleobiology database has a record of the suspected species, wikipedia is yet to make a record of rarer dinosaur. If more data is avaliable, this page will be updated."
+  }
+  else {
+    const splitDescriptionSentences = secondParagraph.split(". ");
+    factFile.textContent = `${splitDescriptionSentences[0]}. ${splitDescriptionSentences[1]}.`
+  }
   return factFile;
 };
 

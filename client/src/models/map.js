@@ -16,7 +16,6 @@ Map.prototype.bindEvents = function () {
 Map.prototype.createMap = function (dinosaur) {
   console.log("COORDS TYPE: ", typeof dinosaur.coords[0]);
   if (typeof dinosaur.coords[0] === "number") {
-    console.log("FAKE MAP");
     const newCoords = [dinosaur.coords];
     const map = L.map('map').setView(newCoords[0], 2);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -38,7 +37,6 @@ Map.prototype.createMap = function (dinosaur) {
     }).addTo(map);
     dinosaur.coords.forEach((coordinates, index) => {
       const icon = this.createIcon(dinosaur.imageId)
-      console.log("ICON: ", dinosaur.imageId);
       L.marker(coordinates, icon).addTo(map)
     })
   }
