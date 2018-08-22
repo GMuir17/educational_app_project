@@ -33,8 +33,8 @@ Map.prototype.createMap = function (dinosaur) {
       id: 'mapbox.streets',
       accessToken: tilesetKey
     }).addTo(map);
-    const icon = this.createIcon(dinosaur.imageId)
     dinosaur.coords.forEach((coordinates, index) => {
+      const icon = this.createIcon(dinosaur.imageId)
       L.marker(coordinates, icon).addTo(map)
     })
   }
