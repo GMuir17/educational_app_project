@@ -55,37 +55,28 @@ Dinosaur.prototype.filterDinosaurData = function (dinosaurs) {
 }
 
 function filterByGenusName(dinosaurs) {
-  const filteredDinosaurs = dinosaurs.reduce((uniqueDinosaurs, dinosaur, oldIndex) => {
-    // check if dinosaur is already in new array
+  const filteredDinosaurs = dinosaurs.reduce((uniqueDinosaurs, dinosaur,   oldIndex) => {
     const dinosaurIsUnique = !uniqueDinosaurs.some((uniqueDinosaur) => {
       return uniqueDinosaur.name === dinosaur.name;
     });
-
-    // if dinosaur is not in new array, then add it to new array
     if (dinosaurIsUnique){
       uniqueDinosaurs.push(dinosaur);
     }
     else {
-      // if dinosaur is already in new array, then find the object
       const existingDinosaur = uniqueDinosaurs.find((existingDinosaur) => {
-        return existingDinosaur.name === dinosaur.name;
+      return existingDinosaur.name === dinosaur.name;
       });
-
-      // if the object already has an array of coordinates, then add the current
-      // dinosaur's array of coords to it
-      if (Array.isArray(existingDinosaur.coords[0])) {
+    if (Array.isArray(existingDinosaur.coords[0])) {
         existingDinosaur.coords.push(dinosaur.coords)
       }
-      else {
-        // if the object doesn't have an array of coordinates then add the old
-        // coords and the new ones to an array
+    else {
         existingDinosaur.coords = [existingDinosaur.coords, dinosaur.coords];
       }
     }
     return uniqueDinosaurs;
   }, [])
 
-  return filteredDinosaurs;
+    return filteredDinosaurs;
 }
 
 

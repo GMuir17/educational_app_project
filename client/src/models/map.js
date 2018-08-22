@@ -6,7 +6,6 @@ const Map = function () {
 }
 
 Map.prototype.bindEvents = function () {
-  // TODO: change from using all dinosaurs to selected dinosaur
  PubSub.subscribe('DinosaurView:MapContainerReady', (evt) => {
    const dinosaur = evt.detail;
    this.createMap(dinosaur)
@@ -35,7 +34,6 @@ Map.prototype.createMap = function (dinosaur) {
       accessToken: tilesetKey
     }).addTo(map);
     const icon = this.createIcon(dinosaur.imageId)
-    console.log('Createmap icon:', icon);
     dinosaur.coords.forEach((coordinates, index) => {
       L.marker(coordinates, {icon: icon}).addTo(map)
     })
@@ -52,7 +50,6 @@ Map.prototype.createIcon = function (imageID) {
     shadowAnchor: [0, 0],
     popupAnchor:  [0, 0]
   });
-  console.log('createicon icon:', icon);
   return icon;
 };
 
