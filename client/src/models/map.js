@@ -14,9 +14,7 @@ Map.prototype.bindEvents = function () {
 }
 
 Map.prototype.createMap = function (dinosaur) {
-  console.log("COORDS TYPE: ", typeof dinosaur.coords[0]);
   if (typeof dinosaur.coords[0] === "number") {
-    console.log("FAKE MAP");
     const newCoords = [dinosaur.coords];
     const map = L.map('map').setView(newCoords[0], 2);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -26,7 +24,7 @@ Map.prototype.createMap = function (dinosaur) {
     }).addTo(map);
     const icon = this.createIcon(dinosaur.imageId)
     newCoords.forEach((coordinates, index) => {
-      L.marker(coordinates, icon).addTo(map)
+      L.marker(coordinates, {icon: icon}).addTo(map)
     })
   }
   else {
@@ -37,14 +35,25 @@ Map.prototype.createMap = function (dinosaur) {
       accessToken: tilesetKey
     }).addTo(map);
     const icon = this.createIcon(dinosaur.imageId)
+    console.log('Createmap icon:', icon);
     dinosaur.coords.forEach((coordinates, index) => {
-      L.marker(coordinates, icon).addTo(map)
+      L.marker(coordinates, {icon: icon}).addTo(map)
     })
   }
 };
 
 Map.prototype.createIcon = function (imageID) {
-  L.icon(`https://paleobiodb.org/data1.2/taxa/thumb.png?id=${imageID}`);
+  const icon = L.icon({
+    iconUrl:`https://paleobiodb.org/data1.2/taxa/thumb.png?id=${imageID}`,
+    shadowUrl: `images/shadow.png`,
+    iconSize:     [64, 64],
+    shadowSize:   [64, 64],
+    iconAnchor:   [32, 32],
+    shadowAnchor: [0, 0],
+    popupAnchor:  [0, 0]
+  });
+  console.log('createicon icon:', icon);
+  return icon;
 };
 
 module.exports = Map

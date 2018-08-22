@@ -26,6 +26,7 @@ DietView.prototype.bindEvents = function () {
 
       item.addEventListener('click', (evt) => {
         const previews = document.querySelectorAll('.dinosaur-preview');
+        console.log(previews);
         previews.forEach((preview, index) => {
           preview.parentNode.removeChild(preview);
         })
